@@ -1,0 +1,24 @@
+{
+  "name": "nomc-medimap-viewer",
+  "version": "1.0.0",
+  "description": "Medimap.ca viewer + slideshow for the North Okanagan Medical Clinic.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jo12bar/NOMC-medimap-viewer.git"
+  },
+  "keywords": [
+    "medimap",
+    "slideshow",
+    "not-on-npm"
+  ],
+  "author": "jo12bar <johann.b@telus.net> (https://github.com/jo12bar)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jo12bar/NOMC-medimap-viewer/issues"
+  },
+  "homepage": "https://github.com/jo12bar/NOMC-medimap-viewer#readme"
+}
