@@ -1,3 +1,7 @@
+static/css/styles.css
+static/js/bundle.js
+static/js/bundle.js.map
+
 # Logs
 logs
 *.log
