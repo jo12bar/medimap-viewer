@@ -22,12 +22,8 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        // loader: ExtractTextPlugin.extract({
-        //   fallbackLoader: 'style-loader',
-        //   loader: 'css-loader!postcss-loader?parser=postcss-safe-parser',
-        //   publicPath: '/css/'
-        // }),
-        loader: 'style-loader!css-loader!postcss-loader?parser=postcss-safe-parser',
+        loader: ExtractTextPlugin.extract('style-loader', 'css-loader!postcss-loader?parser=postcss-safe-parser'),
+        // loader: 'style-loader!css-loader!postcss-loader?parser=postcss-safe-parser',
       },
     ],
   },
@@ -43,7 +39,7 @@ module.exports = {
         warnings: false,
       },
     }),
-    new ExtractTextPlugin('styles.css'),
+    new ExtractTextPlugin('../css/styles.css'),
   ],
   postcss: function() {
     return [require('precss'), require('lost'), require('autoprefixer')];
