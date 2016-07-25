@@ -9,6 +9,5 @@ html
     .reveal
       .slides
         each imgURL in images
-          section
-            img(src=imgURL).stretch
+          section(data-background=imgURL)
     script(src="/js/bundle.js" charset="utf-8")
