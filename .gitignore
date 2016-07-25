@@ -1,7 +1,22 @@
+# Generated build files.
 static/css/styles.css
 static/css/styles.css.map
 static/js/bundle.js
 static/js/bundle.js.map
+
+# All fonts should be required by webpack. They'll probably be copied here by
+# the build process, so we can safely ignore them.
+static/fonts
+
+# Ignore all imported photos, except for the test ones.
+static/raspi-imported-photos/*
+!static/raspi-imported-photos/README.md
+!static/raspi-imported-photos/test-*.jpg
+!static/raspi-imported-photos/test-*.jpeg
+!static/raspi-imported-photos/test-*.JPG
+!static/raspi-imported-photos/test-*.JPEG
+!static/raspi-imported-photos/test-*.png
+!static/raspi-imported-photos/test-*.gif
 
 # Logs
 logs

@@ -1,0 +1,14 @@
+doctype html
+
+html
+  head
+    meta(charset="utf-8")
+    title NOMC-medimap-viewer
+    link(rel="stylesheet" href="/css/styles.css" media="screen" title="no title" charset="utf-8")
+  body
+    .reveal
+      .slides
+        each imgURL in images
+          section
+            img(src=imgURL).stretch
+    script(src="/js/bundle.js" charset="utf-8")

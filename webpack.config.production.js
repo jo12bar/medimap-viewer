@@ -10,7 +10,7 @@ module.exports = {
   output: {
     path: path.join(__dirname, 'static/js'),
     filename: 'bundle.js',
-    publicPath: '/js/',
+    publicPath: '/',
   },
   devtool: 'source-map',
   module: {
@@ -22,8 +22,18 @@ module.exports = {
       },
       {
         test: /\.css$/,
+        exclude: /(node_modules|bower_components)/,
         loader: ExtractTextPlugin.extract('style-loader', 'css-loader!postcss-loader?parser=postcss-safe-parser'),
         // loader: 'style-loader!css-loader!postcss-loader?parser=postcss-safe-parser',
+      },
+      {
+        test: /\.css$/,
+        include: /(node_modules|bower_components)/,
+        loader: ExtractTextPlugin.extract('style-loader', 'css-loader'),
+      },
+      {
+        test: /\.(woff2?|ttf|eot|svg)$/,
+        loader: 'url?limit=10000&name=../fonts/[hash].[ext]',
       },
     ],
   },
