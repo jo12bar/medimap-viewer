@@ -1,0 +1,2 @@
+#!/usr/bin/env bash
+cross-env BABEL_ENV=production webpack --config webpack.config.production.js

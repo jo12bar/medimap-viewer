@@ -4,11 +4,11 @@
   "description": "Medimap.ca viewer + slideshow for the North Okanagan Medical Clinic.",
   "main": "server.js",
   "scripts": {
-    "start": "cross-env NODE_ENV=development node server.js",
-    "start:production": "cross-env NODE_ENV=production node server.js",
-    "build": "cross-env BABEL_ENV=production webpack --config webpack.config.production.js",
-    "lint": "eslint .",
-    "lint:fix": "eslint . --fix",
+    "start": "scripty",
+    "start:production": "scripty",
+    "build": "scripty",
+    "lint": "scripty",
+    "lint:fix": "scripty",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -59,6 +59,7 @@
     "express": "4.14.0",
     "morgan": "1.7.0",
     "pug": "2.0.0-beta4",
-    "reveal.js": "3.3.0"
+    "reveal.js": "3.3.0",
+    "scripty": "1.6.0"
   }
 }
