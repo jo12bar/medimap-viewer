@@ -1,4 +1,5 @@
 import reveal from 'reveal.js';
+import setupMedimapWidgets from './medimap-widget.js'
 
 require('reveal.js/css/reveal.css');
 require('reveal.js/css/theme/black.css');
@@ -15,3 +16,6 @@ reveal.initialize({
   transitionSpeed: 'default',
   backgroundTransition: 'slide',
 });
+
+// Setup all medimap widgets
+setupMedimapWidgets();

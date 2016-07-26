@@ -5,7 +5,12 @@ html
     meta(charset="utf-8")
     title NOMC-medimap-viewer
     link(rel="stylesheet" href="/css/styles.css" media="screen" title="no title" charset="utf-8")
+
   body
+
+    //- Widget that auto-reloads once per minute
+    .medimap-widget(data-clinic-id="573" data-auto-reload data-auto-reload-interval="60000") Loading medimap data...
+
     .reveal
       .slides
         each imgURL in images
