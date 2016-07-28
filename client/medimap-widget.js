@@ -1,5 +1,7 @@
 import axios from 'axios';
 
+require('./medimap-widget.css');
+
 export default function setupMedimapWidgets(elementSelector = '.medimap-widget') {
   const widgets = document.querySelectorAll(elementSelector);
   for (const widget of widgets) {

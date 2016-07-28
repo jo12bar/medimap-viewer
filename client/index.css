@@ -5,3 +5,14 @@ h1 {
 .reveal .slide-background {
   background-size: contain;
 }
+
+.medimap-widget {
+  float: left;
+  height: 100%;
+  width: 25%;
+}
+
+.reveal {
+  float: right;
+  width: 75%;
+}

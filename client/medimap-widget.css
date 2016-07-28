@@ -1,0 +1,138 @@
+@import "./partials/variables";
+
+/* Copied from https://github.com/Dogfalo/materialize/blob/master/sass/components/_global.scss#L60-L81 */
+/* Z-levels */
+.z-depth-0 {
+  box-shadow: none !important;
+}
+.z-depth-1 {
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
+}
+.z-depth-1-half {
+  box-shadow: 0 3px 3px 0 rgba(0, 0, 0, 0.14), 0 1px 7px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -1px rgba(0, 0, 0, 0.2);
+}
+.z-depth-2 {
+  box-shadow: 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12), 0 2px 4px -1px rgba(0, 0, 0, 0.3);
+}
+.z-depth-3 {
+  box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12), 0 3px 5px -1px rgba(0, 0, 0, 0.3);
+}
+.z-depth-4 {
+  box-shadow: 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12), 0 5px 5px -3px rgba(0, 0, 0, 0.3);
+}
+.z-depth-5 {
+  box-shadow: 0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.3);
+}
+
+.mm-widget {
+  @extend .z-depth-5;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  height: 100%;
+  width: 100%;
+  background-color: $color-background;
+  font-family: 'Roboto', sans-serif;
+  font-size: 100%;
+  line-height: 1.5em;
+  color: $color-text;
+
+  * {
+    box-sizing: border-box;
+  }
+
+  a {
+    color: $color-secondary;
+    text-decoration: none;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  .mm-widget-header {
+    @extend .z-depth-2;
+    display: flex;
+    flex-direction: row;
+    flex: 0 1 64px;
+    align-items: center;
+    background-color: $color-primary;
+    color: $color-text-inverse;
+    padding: 1em;
+
+    .mm-widget-header-title {
+      order: 1;
+      flex: 2;
+    }
+
+    .mm-widget-header-availability {
+      order: 2;
+      flex: 3;
+      font-size: 1.125em;
+      font-weight: bold;
+      text-align: right;
+    }
+  }
+
+  .mm-widget-body {
+    flex: 2 1 auto;
+    display: flex;
+    flex-direction: column;
+    padding: 1em;
+    font-size: 1.5em;
+    font-weight: 400;
+    line-height: 2em;
+
+    .mm-widget-status {
+      @extend .z-depth-1;
+      flex: 1 1 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      height: 100%;
+      padding: 1.25em;
+      border-radius: 0.125em;
+      font-family: "Roboto Condensed", "Roboto", sans-serif;
+      text-transform: uppercase;
+
+      .mm-widget-minutes, .mm-widget-minutes-unit {
+        color: $color-green;
+      }
+
+      .mm-widget-minutes {
+        flex: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 4.5em;
+        position: relative;
+        width: 100%;
+        font-weight: bold;
+        line-height: 100%;
+      }
+
+      .mm-widget-minutes:empty::before {
+        content: "--";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+
+      .mm-widget-minutes-unit {
+        flex: 1;
+      }
+
+      .mm-widget-closed {
+        color: $color-red;
+      }
+    }
+  }
+
+  .mm-widget-footer {
+    @extend .z-depth-2;
+    flex: 0 1 auto;
+    background-color: $color-primary;
+    color: $color-text-inverse;
+    padding: 1em;
+  }
+}

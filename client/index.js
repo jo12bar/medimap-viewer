@@ -1,9 +1,10 @@
-import reveal from 'reveal.js';
-import setupMedimapWidgets from './medimap-widget.js'
-
+require('normalize.css');
 require('reveal.js/css/reveal.css');
 require('reveal.js/css/theme/black.css');
 require('./index.css');
+
+import reveal from 'reveal.js';
+import setupMedimapWidgets from './medimap-widget.js'
 
 reveal.initialize({
   controls: false,

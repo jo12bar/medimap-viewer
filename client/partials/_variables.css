@@ -1,0 +1,10 @@
+$color-background: #fafafa;
+$color-default: color($color-background blackness(10%));
+$color-primary: #3f51b5;    /* Main Primary color */
+$color-secondary: #ffeb3b;	/* Main Secondary color (2) */
+$color-red: #f44336;
+$color-green: #4caf50;
+$color-light-green: #8bc34a;
+
+$color-text: rgba(0, 0, 0, 0.87);
+$color-text-inverse: rgba(255, 255, 255, 0.87);

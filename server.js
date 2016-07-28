@@ -55,7 +55,7 @@ app.get('/', (req, res) => {
     images.push(`/raspi-imported-photos/${filenameInfo.base}`);
   });
 
-  res.render('index', { images });
+  res.render('index', { images, NODE_ENV: process.env.NODE_ENV });
 });
 
 app.listen(3000, () => {
