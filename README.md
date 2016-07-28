@@ -2,6 +2,8 @@
 
 [![forthebadge](http://forthebadge.com/images/badges/gluten-free.svg)](http://forthebadge.com)
 
+![Screenshot of NOMC-medimap-viewer](./NOMC-medimap-viewer.png)
+
 Medimap widget viewer + announcement slideshow for the North Okanagan Medical Clinic, running on a Raspberry Pi.
 
 ## I'm sorry, what?
