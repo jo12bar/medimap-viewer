@@ -4,7 +4,7 @@ require('reveal.js/css/theme/black.css');
 require('./index.css');
 
 import reveal from 'reveal.js';
-import setupMedimapWidgets from './medimap-widget.js'
+import setupMedimapWidgets from './medimap-widget.js';
 
 reveal.initialize({
   controls: false,
