@@ -1,0 +1,62 @@
+#!/usr/bin/env bash
+# Mostly stolen from http://raspberrypi.stackexchange.com/a/43336/39077
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+INSTALL_DIR="${DIR}/.."
+HOME_DIR="${INSTALL_DIR}/.."
+
+set -e
+
+info () {
+  printf "\r  [ \033[00;34m..\033[0m ] $1\n"
+}
+
+user () {
+  printf "\r  [ \033[0;33m??\033[0m ] $1\n"
+}
+
+success () {
+  printf "\r\033[2K  [ \033[00;32mOK\033[0m ] $1\n"
+}
+
+fail () {
+  printf "\r\033[2K  [\033[0;31mFAIL\033[0m] $1\n"
+}
+
+info 'Disabling DPMS (Energy Star) features'
+xset -dpms
+
+info 'Disabling screensaver'
+xset s off
+
+info 'Stopping video device from blanking'
+xset s noblank
+
+info 'Updating & rebuilding code'
+cd "${INSTALL_DIR}"
+git pull origin master
+npm prune
+npm install
+npm run build
+
+info "Temporarily moving test images out of ${INSTALL_DIR}/static/raspi-imported-photos"
+mv "${INSTALL_DIR}/static/raspi-imported-photos"/test-* "${INSTALL_DIR}"
+
+info "rsync-ing images from /media/usb0 to ${INSTALL_DIR}/static/raspi-imported-photos"
+rsync -vh "/media/usb0"/*.{jpg,jpeg,JPG,JPEG,png,gif} "${INSTALL_DIR}/static/raspi-imported-photos"
+
+info 'Starting server in background'
+npm run start:production &
+
+info 'Starting window manager (without titlebars) in background'
+matchbox-window-manager -use_titlebar no &
+
+info 'Giving server time to start up...'
+sleep 60
+
+info 'Starting epiphany in koisk mode'
+WEBKIT_DISABLE_TBS=1 epiphany-browser -a --profile "${HOME_DIR}/.config" http://localhost:3000
+
+info 'Restoring test images (to avoid git merge commits ;-) )'
+mv "${INSTALL_DIR}"/test-* "${INSTALL_DIR}/static/raspi-imported-photos"
+
+exit 0
