@@ -24,7 +24,7 @@ My father works as a doctor at the [North Okanagan Medical Clinic](http://www.he
 sudo apt update
 sudo apt install -y git usbmount build-essential
 # Install nodejs as according to https://nodejs.org/en/download/package-manager/#debian-and-ubuntu-based-linux-distributions
-curl -sL https://deb.nodesource.com/setup_4.x | sudo -E bash -
+curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -
 sudo apt install -y nodejs
 ```
 8. Run the install script from GitHub with the following command:
