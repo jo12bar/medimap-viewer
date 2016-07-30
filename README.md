@@ -21,12 +21,16 @@ My father works as a doctor at the [North Okanagan Medical Clinic](http://www.he
 6. Exit `raspi-config`. Reboot.
 7. You'll now be logged in to the command line. First, install the following packages:
 ```bash
+sudo apt update
 sudo apt install -y git usbmount build-essential
 # Install nodejs as according to https://nodejs.org/en/download/package-manager/#debian-and-ubuntu-based-linux-distributions
 curl -sL https://deb.nodesource.com/setup_4.x | sudo -E bash -
 sudo apt install -y nodejs
 ```
-8. Run the install script from GitHub with the following command: <sub>...which I'll add when I push the code to GitHub and figure out the script's URL</sub>
+8. Run the install script from GitHub with the following command:
+```bash
+curl -sL https://raw.githubusercontent.com/jo12bar/NOMC-medimap-viewer/master/raspi-scripts/install.bash | bash -
+```
 9. Insert a USB stick loaded with images (in it's root directory), and reboot by running `sudo reboot`. The slideshow should start working - if anything goes wrong, then yell at me on [this repo's issue page](https://github.com/jo12bar/NOMC-medimap-viewer/issues).
 
 ## `npm` scripts
