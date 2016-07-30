@@ -10,7 +10,7 @@ info () {
 }
 
 info 'Starting epiphany in koisk mode'
-WEBKIT_DISABLE_TBS=1 epiphany-browser -a --profile "${HOME_DIR}/.config" http://localhost:3000
+epiphany-browser http://localhost:3000
 
 info 'Restoring test images (to avoid git merge commits ;-) )'
 mv "${INSTALL_DIR}"/test-* "${INSTALL_DIR}/static/raspi-imported-photos"

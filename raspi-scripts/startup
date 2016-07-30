@@ -33,7 +33,7 @@ xset s noblank
 
 info 'Updating & rebuilding code'
 cd "${INSTALL_DIR}"
-sleep 60 # Give Pi time to connect to network
+sleep 30 # Give Pi time to connect to network
 git pull origin master
 npm prune
 npm install
