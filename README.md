@@ -11,18 +11,16 @@ My father works as a doctor at the [North Okanagan Medical Clinic](http://www.he
 
 ## Installation (on a Raspberry Pi)
 1. Get yourself a Raspberry Pi 2 or 3 with a fresh install of Raspbian.
-2. Open terminal. Run `sudo raspi-config`.
-3. Select option 3 (Boot Options). ![Screenshot of `raspi-config`](./README-images/raspi-config-1.png)
-4. Select option B2 (Console Autologin). ![Screenshot of `raspi-config`](./README-images/raspi-config-2.png)
-5. **OPTIONAL**: Enable remote ssh access.
-  1. Back at the main menu, select option 9 (Advance Options). ![Screenshot of `raspi-config`](./README-images/raspi-config-3.png)
-  2. Select option A4 (SSH). ![Screenshot of `raspi-config`](./README-images/raspi-config-4.png)
-  3. Enable the SSH server. ![Screenshot of `raspi-config`](./README-images/raspi-config-5.png)
-6. Exit `raspi-config`. Reboot.
-7. You'll now be logged in to the command line. First, install the following packages:
+2. **OPTIONAL**: Enable remote ssh access.
+  1. Open terminal. Run `sudo raspi-config`.
+  2. At the main menu, select option 9 (Advance Options). ![Screenshot of `raspi-config`](./README-images/raspi-config-3.png)
+  3. Select option A4 (SSH). ![Screenshot of `raspi-config`](./README-images/raspi-config-4.png)
+  4. Enable the SSH server. ![Screenshot of `raspi-config`](./README-images/raspi-config-5.png)
+3. Exit `raspi-config`. Reboot.
+4. You'll now be logged in to the desktop. First, install the following packages:
 ```bash
 sudo apt update
-sudo apt install -y git usbmount build-essential
+sudo apt install -y git usbmount build-essential xautomation
 # Install nodejs as according to https://nodejs.org/en/download/package-manager/#debian-and-ubuntu-based-linux-distributions
 curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -
 sudo apt install -y nodejs

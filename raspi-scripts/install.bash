@@ -39,20 +39,10 @@ info 'Building app'
 npm run build
 success 'App built!'
 
-rc_local_script="
-sudo xinit $INSTALL_DIR/raspi-scripts/startB &
-exit 0
-"
-
-info 'Replacing last non-empty line in /etc/rc.local with'
-echo ''
-echo -e "$rc_local_script"
-echo ''
-info 'We have to use "sudo" to do this. Because of this, you may be'
-info 'asked to input your password.'
-sudo sed -i -e :a -e '/^\n*$/{$d;N;};/\n$/ba' '/etc/rc.local' # Remove trailing blank lines
-sudo sed -i '$d' '/etc/rc.local' && sudo -E echo -e "$rc_local_script" | sudo tee -a '/etc/rc.local' > /dev/null
-success 'Lines added!'
+info 'Adding autostart script for this user at ${HOME}/.config/lxsession/LXDE/autostart'
+mkdir -p "${HOME}/.config/lxsession/LXDE"
+echo "@${INSTALL_DIR}/raspi-scripts/startup > ${INSTALL_DIR}/startup.log" >> "${HOME}/.config/lxsession/LXDE/autostart"
+success 'Script added!'
 
 echo ''
 

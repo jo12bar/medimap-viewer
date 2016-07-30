@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+INSTALL_DIR="${DIR}/.."
+HOME_DIR="${INSTALL_DIR}/.."
+
+set -e
+
+info () {
+  printf "\r  [ \033[00;34m..\033[0m ] $1\n"
+}
+
+info 'Starting epiphany in koisk mode'
+WEBKIT_DISABLE_TBS=1 epiphany-browser -a --profile "${HOME_DIR}/.config" http://localhost:3000
+
+info 'Restoring test images (to avoid git merge commits ;-) )'
+mv "${INSTALL_DIR}"/test-* "${INSTALL_DIR}/static/raspi-imported-photos"

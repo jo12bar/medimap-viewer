@@ -48,16 +48,13 @@ rsync -vh "/media/usb0"/*.{jpg,jpeg,JPG,JPEG,png,gif} "${INSTALL_DIR}/static/ras
 info 'Starting server in background'
 npm run start:production &
 
-info 'Starting window manager (without titlebars) in background'
-matchbox-window-manager -use_titlebar no &
-
 info 'Giving server time to start up...'
 sleep 60
 
-info 'Starting epiphany in koisk mode'
-WEBKIT_DISABLE_TBS=1 epiphany-browser -a --profile "${HOME_DIR}/.config" http://localhost:3000
+# Start browser
+$DIR/startup-subscript &
 
-info 'Restoring test images (to avoid git merge commits ;-) )'
-mv "${INSTALL_DIR}"/test-* "${INSTALL_DIR}/static/raspi-imported-photos"
+info 'Giving browser time to startup & fullscreening'
+xte 'sleep 30' 'key F11'
 
 exit 0
