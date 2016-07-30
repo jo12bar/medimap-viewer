@@ -40,7 +40,7 @@ npm run build
 success 'App built!'
 
 rc_local_script="
-sudo xinit $INSTALL_DIR/raspi-scripts/startB &;
+sudo xinit $INSTALL_DIR/raspi-scripts/startB &
 exit 0
 "
 
