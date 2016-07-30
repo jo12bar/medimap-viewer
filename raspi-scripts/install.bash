@@ -35,10 +35,14 @@ npm prune
 npm install
 success 'Packages installed!'
 
-read -r -d '' rc_local_script <<EOF
+info 'Building app'
+npm run build
+success 'App built!'
+
+rc_local_script="
 sudo xinit $INSTALL_DIR/raspi-scripts/startB &;
 exit 0;
-EOF
+"
 
 info 'Adding the following lines to /etc/rc.local'
 echo ''
@@ -48,10 +52,6 @@ info 'We have to use "sudo" to do this. Because of this, you may be'
 info 'asked to input your password.'
 sed -i '$d' '/etc/rc.local' && echo -e "$rc_local_script" >> '/etc/rc.local'
 success 'Lines added!'
-
-info 'Building app'
-npm run build
-success 'App built!'
 
 echo ''
 
