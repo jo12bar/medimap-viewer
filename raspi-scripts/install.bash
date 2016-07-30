@@ -41,7 +41,7 @@ success 'App built!'
 
 info 'Adding autostart script for this user at ${HOME}/.config/lxsession/LXDE/autostart'
 mkdir -p "${HOME}/.config/lxsession/LXDE"
-echo "@${INSTALL_DIR}/raspi-scripts/startup > ${INSTALL_DIR}/startup.log" >> "${HOME}/.config/lxsession/LXDE/autostart"
+echo "@${INSTALL_DIR}/raspi-scripts/startup > ${INSTALL_DIR}/startup.log" >> "${HOME}/.config/lxsession/LXDE-pi/autostart"
 success 'Script added!'
 
 echo ''
