@@ -39,15 +39,19 @@ info 'Building app'
 npm run build
 success 'App built!'
 
-rc_local_script="sudo xinit $INSTALL_DIR/raspi-scripts/startB &; exit 0"
+rc_local_script="
+sudo xinit $INSTALL_DIR/raspi-scripts/startB &;
+exit 0
+"
 
-info 'Replacing all occurences of `exit 0` in /etc/rc.local with'
+info 'Replacing last non-empty line in /etc/rc.local with'
 echo ''
 echo -e "$rc_local_script"
 echo ''
 info 'We have to use "sudo" to do this. Because of this, you may be'
 info 'asked to input your password.'
-sudo sed -i "s/exit 0/${rc_local_script}/g" '/etc/rc.local'
+sudo sed -i -e :a -e '/^\n*$/{$d;N;};/\n$/ba' '/etc/rc.local' # Remove trailing blank lines
+sudo sed -i '$d' '/etc/rc.local' && sudo -E echo -e "$rc_local_script" | sudo tee -a '/etc/rc.local' > /dev/null
 success 'Lines added!'
 
 echo ''
