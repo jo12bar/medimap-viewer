@@ -50,7 +50,7 @@ echo -e "$rc_local_script"
 echo ''
 info 'We have to use "sudo" to do this. Because of this, you may be'
 info 'asked to input your password.'
-sed -i '$d' '/etc/rc.local' && echo -e "$rc_local_script" >> '/etc/rc.local'
+sudo sed -i '$d' '/etc/rc.local' && sudo -E echo -e "$rc_local_script" >> '/etc/rc.local'
 success 'Lines added!'
 
 echo ''
