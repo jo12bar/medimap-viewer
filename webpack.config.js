@@ -44,6 +44,6 @@ module.exports = {
     new webpack.NoErrorsPlugin(),
   ],
   postcss: function() {
-    return [require('precss')({ addDependencyTo: webpack }), require('autoprefixer')];
+    return [require('precss')({ addDependencyTo: webpack }), require('postcss-flexibility'), require('autoprefixer')];
   },
 };
