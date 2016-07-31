@@ -46,7 +46,7 @@ info "rsync-ing images from /media/usb0 to ${INSTALL_DIR}/static/raspi-imported-
 rsync -vh --delete "/media/usb0"/*.{jpg,jpeg,JPG,JPEG,png,gif} "${INSTALL_DIR}/static/raspi-imported-photos" || true
 
 info 'Starting server in background'
-npm run start:production &
+npm run start:production > "$INSTALL_DIR/server.log" &
 
 info 'Giving server time to start up...'
 sleep 60
