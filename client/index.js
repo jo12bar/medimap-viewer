@@ -1,3 +1,5 @@
+import 'babel-polyfill';
+
 require('normalize.css');
 require('reveal.js/css/reveal.css');
 require('reveal.js/css/theme/black.css');
