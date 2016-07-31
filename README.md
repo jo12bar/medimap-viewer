@@ -20,7 +20,7 @@ My father works as a doctor at the [North Okanagan Medical Clinic](http://www.he
 4. You'll now be logged in to the desktop. First, install the following packages:
   ```bash
   sudo apt update
-  sudo apt install -y git usbmount build-essential xautomation midori
+  sudo apt install -y git usbmount build-essential xautomation iceweasel
   # Install nodejs as according to https://nodejs.org/en/download/package-manager/#debian-and-ubuntu-based-linux-distributions
   curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -
   sudo apt install -y nodejs
