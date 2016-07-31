@@ -18,18 +18,18 @@ My father works as a doctor at the [North Okanagan Medical Clinic](http://www.he
   4. Enable the SSH server. ![Screenshot of `raspi-config`](./README-images/raspi-config-5.png)
 3. Exit `raspi-config`. Reboot.
 4. You'll now be logged in to the desktop. First, install the following packages:
-```bash
-sudo apt update
-sudo apt install -y git usbmount build-essential xautomation
-# Install nodejs as according to https://nodejs.org/en/download/package-manager/#debian-and-ubuntu-based-linux-distributions
-curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -
-sudo apt install -y nodejs
-```
-8. Run the install script from GitHub with the following command:
-```bash
-curl -sL https://raw.githubusercontent.com/jo12bar/NOMC-medimap-viewer/master/raspi-scripts/install.bash | bash -
-```
-9. Insert a USB stick loaded with images (in it's root directory), and reboot by running `sudo reboot`. The slideshow should start working - if anything goes wrong, then yell at me on [this repo's issue page](https://github.com/jo12bar/NOMC-medimap-viewer/issues).
+  ```bash
+  sudo apt update
+  sudo apt install -y git usbmount build-essential xautomation
+  # Install nodejs as according to https://nodejs.org/en/download/package-manager/#debian-and-ubuntu-based-linux-distributions
+  curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -
+  sudo apt install -y nodejs
+  ```
+5. Run the install script from GitHub with the following command:
+  ```bash
+  curl -sL https://raw.githubusercontent.com/jo12bar/NOMC-medimap-viewer/master/raspi-scripts/install.bash | bash -
+  ```
+6. Insert a USB stick loaded with images (in it's root directory), and reboot by running `sudo reboot`. The slideshow should start working - if anything goes wrong, then yell at me on [this repo's issue page](https://github.com/jo12bar/NOMC-medimap-viewer/issues).
 
 ## `npm` scripts
 NOMC-medimap-viewer uses [`scripty`](https://github.com/testdouble/scripty) to organize npm scripts. The scripts are defined in the [`scripts` directory](./scripts), and replicated in [`scripts-win`](./scripts-win) for compatibility. In `package.json` you'll see the word `scripty` as opposed to the script content you'd expect. For more info, see [scripty's GitHub](https://github.com/testdouble/scripty).
