@@ -14,9 +14,6 @@ export function loadMedimapData(widget, clinicID) {
     if (defaultStylesheet) {
       widget.removeChild(defaultStylesheet);
     }
-
-    // Loaded from https://npmcdn.com/flexibility@2.0.1
-    window.flexibility(widget);
   });
 }
 

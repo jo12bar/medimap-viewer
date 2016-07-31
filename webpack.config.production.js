@@ -52,6 +52,6 @@ module.exports = {
     new ExtractTextPlugin('../css/styles.css'),
   ],
   postcss: function() {
-    return [require('precss')({ addDependencyTo: webpack }), require('postcss-flexibility'), require('autoprefixer')];
+    return [require('precss')({ addDependencyTo: webpack }), require('autoprefixer')];
   },
 };
