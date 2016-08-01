@@ -19,8 +19,14 @@ My father works as a doctor at the [North Okanagan Medical Clinic](http://www.he
 3. Exit `raspi-config`. Reboot.
 4. You'll now be logged in to the desktop. First, install the following packages:
   ```bash
+  # Add kusti8's chromium repository as according to https://www.raspberrypi.org/forums/viewtopic.php?f=63&t=121195
+  wget -qO - http://bintray.com/user/downloadSubjectPublicKey?username=bintray | sudo apt-key add -
+  echo "deb http://dl.bintray.com/kusti8/chromium-rpi jessie main" | sudo tee -a /etc/apt/sources.list
+
+  # Refresh sources & install packages
   sudo apt update
-  sudo apt install -y git usbmount build-essential xautomation iceweasel
+  sudo apt install -y git usbmount build-essential xautomation chromium-browser
+
   # Install nodejs as according to https://nodejs.org/en/download/package-manager/#debian-and-ubuntu-based-linux-distributions
   curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -
   sudo apt install -y nodejs

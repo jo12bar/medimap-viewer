@@ -9,8 +9,8 @@ info () {
   printf "\r  [ \033[00;34m..\033[0m ] $1\n"
 }
 
-info 'Starting iceweasel / firefox'
-iceweasel http://localhost:3000 > $INSTALL_DIR/iceweasel.log 2>&1
+info 'Starting chromium-browser in app mode'
+chromium-browser --app=http://localhost:3000 --verbose > $INSTALL_DIR/chromium.log 2>&1
 
 info 'Restoring test images (to avoid git merge commits ;-) )'
 mv "${INSTALL_DIR}"/test-* "${INSTALL_DIR}/static/raspi-imported-photos"
