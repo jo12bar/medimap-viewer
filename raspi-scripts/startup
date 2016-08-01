@@ -44,7 +44,8 @@ mv "${INSTALL_DIR}/static/raspi-imported-photos"/test-* "${INSTALL_DIR}"
 
 info "rsync-ing images from /media/usb0 to ${INSTALL_DIR}/static/raspi-imported-photos"
 rsync -vhr --delete \
-  --exclude='*' \
+  --exclude='*/' \
+  --exclude='test-*' \
   --include='*.jpg' \
   --include='*.jpeg' \
   --include='*.JPG' \
