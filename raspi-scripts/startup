@@ -22,6 +22,10 @@ fail () {
   printf "\r\033[2K  [\033[0;31mFAIL\033[0m] $1\n"
 }
 
+info 'Moving any left-over test images bask into ${INSTALL_DIR}/static/raspi-imported-photos'
+info "so git doesn't freak out."
+mv "${INSTALL_DIR}"/test-* "${INSTALL_DIR}/static/raspi-imported-photos" || true
+
 info 'Disabling DPMS (Energy Star) features'
 xset -dpms
 
