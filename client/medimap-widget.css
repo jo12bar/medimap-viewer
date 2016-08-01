@@ -122,12 +122,13 @@
         flex: 1;
       }
 
-      .mm-widget-closed {
+      .mm-widget-closed, .mm-widget-at-capacity {
         flex: 1;
         display: flex;
         justify-content: center;
         align-items: center;
         color: $color-red;
+        text-align: center;
       }
     }
   }
