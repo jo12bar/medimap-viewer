@@ -66,8 +66,24 @@ sleep 60
 
 # Start browser
 $DIR/startup-subscript &
+startup_subscript_PID=$!
 
 info 'Giving browser time to startup & fullscreening'
 xte 'sleep 60' 'key F11' > "${INSTALL_DIR}/xte.log" 2>&1
 
-exit 0
+# Wait for startup-subscript to finish before exiting
+FAIL=0
+
+wait $startup_subscript_PID || let 'FAIL+=1'
+
+if [ "$FAIL" == "0" ]; then
+  success 'Chromium closed with no errors!'
+  user 'Press any key to continue...'
+  read -n1 -r key
+  exit 0
+else
+  fail 'Chromium closed with errors! Check the logs!'
+  user 'Press any key to continue...'
+  read -n1 -r key
+  exit 1
+fi
