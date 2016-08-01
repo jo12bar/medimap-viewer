@@ -64,6 +64,6 @@ sleep 60
 $DIR/startup-subscript &
 
 info 'Giving browser time to startup & fullscreening'
-xte 'sleep 30' 'key F11'
+xte 'sleep 60' 'key F11' > "${INSTALL_DIR}/xte.log" 2>&1
 
 exit 0

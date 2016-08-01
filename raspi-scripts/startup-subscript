@@ -9,7 +9,7 @@ info () {
   printf "\r  [ \033[00;34m..\033[0m ] $1\n"
 }
 
-info 'Starting epiphany in koisk mode'
+info 'Starting iceweasel / firefox'
 iceweasel http://localhost:3000 > $INSTALL_DIR/iceweasel.log 2>&1
 
 info 'Restoring test images (to avoid git merge commits ;-) )'
