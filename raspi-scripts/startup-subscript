@@ -9,6 +9,9 @@ info () {
   printf "\r  [ \033[00;34m..\033[0m ] $1\n"
 }
 
+info 'Hiding cursor after 1 sec inactivity'
+unclutter -idle 1 -root &
+
 info 'Starting chromium-browser in app mode'
 chromium-browser --app=http://localhost:3000 --verbose > $INSTALL_DIR/chromium.log 2>&1
 

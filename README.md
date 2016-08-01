@@ -25,7 +25,7 @@ My father works as a doctor at the [North Okanagan Medical Clinic](http://www.he
 
   # Refresh sources & install packages
   sudo apt update
-  sudo apt install -y git usbmount build-essential xautomation chromium-browser
+  sudo apt install -y git usbmount build-essential xautomation unclutter chromium-browser
 
   # Install nodejs as according to https://nodejs.org/en/download/package-manager/#debian-and-ubuntu-based-linux-distributions
   curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -
