@@ -63,7 +63,7 @@ sleep 60
 # Start browser
 $DIR/startup-subscript &
 
-info 'Giving browser time to startup & fullscreening, refreshing'
-xte 'sleep 30' 'key F11' 'sleep 5' 'key F5'
+info 'Giving browser time to startup & fullscreening'
+xte 'sleep 30' 'key F11'
 
 exit 0
