@@ -50,6 +50,7 @@ info "rsync-ing images from /media/usb0 to ${INSTALL_DIR}/static/raspi-imported-
 rsync -vhr --delete \
   --exclude='*/' \
   --exclude='test-*' \
+  --exclude='README.md' \
   --include='*.jpg' \
   --include='*.jpeg' \
   --include='*.JPG' \
