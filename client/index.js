@@ -15,9 +15,9 @@ reveal.initialize({
   shuffle: true,
   autoSlide: 20 * 1000,
   autoSlideStoppable: false,
-  transition: 'slide',
+  transition: 'fade',
   transitionSpeed: 'default',
-  backgroundTransition: 'slide',
+  backgroundTransition: 'fade',
 });
 
 // Setup all medimap widgets
