@@ -43,12 +43,15 @@ info "Temporarily moving test images out of ${INSTALL_DIR}/static/raspi-imported
 mv "${INSTALL_DIR}/static/raspi-imported-photos"/test-* "${INSTALL_DIR}"
 
 info "rsync-ing images from /media/usb0 to ${INSTALL_DIR}/static/raspi-imported-photos"
-rsync -vhr --delete "/media/usb0"/*.jpg "${INSTALL_DIR}/static/raspi-imported-photos" || true
-rsync -vhr --delete "/media/usb0"/*.jpeg "${INSTALL_DIR}/static/raspi-imported-photos" || true
-rsync -vhr --delete "/media/usb0"/*.JPG "${INSTALL_DIR}/static/raspi-imported-photos" || true
-rsync -vhr --delete "/media/usb0"/*.JPEG "${INSTALL_DIR}/static/raspi-imported-photos" || true
-rsync -vhr --delete "/media/usb0"/*.png "${INSTALL_DIR}/static/raspi-imported-photos" || true
-rsync -vhr --delete "/media/usb0"/*.gif "${INSTALL_DIR}/static/raspi-imported-photos" || true
+rsync -vhr --delete \
+  --exclude='*' \
+  --include='*.jpg' \
+  --include='*.jpeg' \
+  --include='*.JPG' \
+  --include='*.JPEG' \
+  --include='*.png' \
+  --include='*.gif' \
+  '/media/usb0/' "${INSTALL_DIR}/static/raspi-imported-photos/"
 
 info 'Starting server in background'
 npm run start:production > "$INSTALL_DIR/server.log" 2>&1 &
