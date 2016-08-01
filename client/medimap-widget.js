@@ -1,9 +1,13 @@
 import axios from 'axios';
+import uuid from 'node-uuid';
 
 require('./medimap-widget.css');
 
 export function loadMedimapData(widget, clinicID) {
-  const jsonUrl = `https://crossorigin.me/https://medimap.ca/clinics/widgetdata/${clinicID}.json`;
+  const baseUrl = 'https://crossorigin.me/https://medimap.ca/clinics/widgetdata';
+  const cacheBreakerUUID = uuid.v4();
+
+  const jsonUrl = `${baseUrl}/${clinicID}.json?CACHE_BREAKER_UUID=${cacheBreakerUUID}`;
 
   axios.get(jsonUrl)
   .then((res) => {
