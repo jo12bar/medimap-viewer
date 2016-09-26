@@ -26,6 +26,8 @@ fail () {
   printf "\r\033[2K  [\033[0;31mFAIL\033[0m] $1\n"
 }
 
+cd "${INSTALL_DIR}"
+
 info "Moving any left-over test images bask into ${INSTALL_DIR}/static/raspi-imported-photos"
 info "so git doesn't freak out."
 mv "${INSTALL_DIR}"/test-* "${INSTALL_DIR}/static/raspi-imported-photos" || true
@@ -50,13 +52,11 @@ changed_files_processed=$(curl -H 'Accept: application/vnd.github.v3+json' "${cu
 if [[ "${changed_files_processed}" == *"true"* ]]; then
   info 'Startup script has been changed!'
   info 'Going to update code, then restart.'
-  cd "${INSTALL_DIR}"
   git pull origin master
   reboot
 fi
 
 info 'Updating & rebuilding code'
-cd "${INSTALL_DIR}"
 git pull origin master
 npm prune
 npm install
