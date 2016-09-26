@@ -1,10 +1,10 @@
-# NOMC-medimap-viewer
+# medimap-viewer
 
 [![forthebadge](http://forthebadge.com/images/badges/gluten-free.svg)](http://forthebadge.com)
 
 ![Screenshot of NOMC-medimap-viewer](./README-images/NOMC-medimap-viewer.png)
 
-Medimap widget viewer + announcement slideshow for the North Okanagan Medical Clinic, running on a Raspberry Pi.
+Medimap widget viewer + announcement slideshow for walk-in clinics in Canada, running on a Raspberry Pi.
 
 ## I'm sorry, what?
 My father works as a doctor at the [North Okanagan Medical Clinic](http://www.health-local.com/biz/walk-in-clinics/vernon/british-columbia/north-okanagan-medical-clinic/), and wanted a display running off a Raspberry Pi that could display info from [medimap.ca](https://medimap.ca) as well as a slideshow for announcements. I decided to run this off a Reveal.js slideshow.
@@ -25,7 +25,7 @@ My father works as a doctor at the [North Okanagan Medical Clinic](http://www.he
 
   # Refresh sources & install packages
   sudo apt update
-  sudo apt install -y git usbmount build-essential xautomation unclutter chromium-browser
+  sudo apt install -y git usbmount build-essential xautomation unclutter chromium-browser jq
 
   # Install nodejs as according to https://nodejs.org/en/download/package-manager/#debian-and-ubuntu-based-linux-distributions
   curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -
