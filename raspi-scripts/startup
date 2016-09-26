@@ -26,7 +26,7 @@ fail () {
   printf "\r\033[2K  [\033[0;31mFAIL\033[0m] $1\n"
 }
 
-info 'Moving any left-over test images bask into ${INSTALL_DIR}/static/raspi-imported-photos'
+info "Moving any left-over test images bask into ${INSTALL_DIR}/static/raspi-imported-photos"
 info "so git doesn't freak out."
 mv "${INSTALL_DIR}"/test-* "${INSTALL_DIR}/static/raspi-imported-photos" || true
 
@@ -39,18 +39,25 @@ xset s off
 info 'Stopping video device from blanking'
 xset s noblank
 
-info 'Updating & rebuilding code'
-cd "${INSTALL_DIR}"
-sleep 30 # Give Pi time to connect to network
-git pull origin master
+info 'Waiting 30s for a network connection...'
+sleep 30
 
-# Check to see if this startup script updated
-changed_files=$(git diff --name-only HEAD~1..HEAD)
-if [[ $changed_files == *"raspi-scripts/startup" ]]; then
-  info 'Startup file changed, rebooting.'
-  sudo reboot
+info 'Checking to see if startup script has changed...'
+current_git_sha=$(git rev-parse HEAD)
+curl_url="https://api.github.com/repos/jo12bar/medimap-viewer/compare/jo12bar:${current_git_sha}...jo12bar:HEAD"
+jq_program="if .files[].filename == \"raspi-scripts/startup\" then true else false"
+changed_files_processed=$(curl -H 'Accept: application/vnd.github.v3+json' "${curl_url}" | jq "${jq_program}")
+if [[ "${changed_files_processed}" == *"true"* ]]; then
+  info 'Startup script has been changed!'
+  info 'Going to update code, then restart.'
+  cd "${INSTALL_DIR}"
+  git pull origin master
+  reboot
 fi
 
+info 'Updating & rebuilding code'
+cd "${INSTALL_DIR}"
+git pull origin master
 npm prune
 npm install
 npm run build
