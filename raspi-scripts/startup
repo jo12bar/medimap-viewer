@@ -1,9 +1,6 @@
 #!/usr/bin/env bash
 # Mostly stolen from http://raspberrypi.stackexchange.com/a/43336/39077
 
-# test comment
-# hope bash doesn't freak out!
-
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 INSTALL_DIR="${DIR}/.."
 HOME_DIR="${INSTALL_DIR}/.."
@@ -28,7 +25,7 @@ fail () {
 
 cd "${INSTALL_DIR}"
 
-info "Moving any left-over test images bask into ${INSTALL_DIR}/static/raspi-imported-photos"
+info "Moving any left-over test images back into ${INSTALL_DIR}/static/raspi-imported-photos"
 info "so git doesn't freak out."
 mv "${INSTALL_DIR}"/test-* "${INSTALL_DIR}/static/raspi-imported-photos" || true
 
@@ -54,6 +51,8 @@ if [[ "${changed_files_processed}" == *"true"* ]]; then
   info 'Going to update code, then restart.'
   git pull origin master
   reboot
+else
+  info 'Startup file unchanged!'
 fi
 
 info 'Updating & rebuilding code'
