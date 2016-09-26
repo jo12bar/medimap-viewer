@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
 # Mostly stolen from http://raspberrypi.stackexchange.com/a/43336/39077
+
+# test comment
+# hope bash doesn't freak out!
+
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 INSTALL_DIR="${DIR}/.."
 HOME_DIR="${INSTALL_DIR}/.."
