@@ -45,7 +45,7 @@ sleep 30 # Give Pi time to connect to network
 git pull origin master
 
 # Check to see if this startup script updated
-changed_files=git diff --name-only HEAD~1..HEAD
+changed_files=$(git diff --name-only HEAD~1..HEAD)
 if [[ $changed_files == *"raspi-scripts/startup" ]]; then
   info 'Startup file changed, rebooting.'
   sudo reboot
