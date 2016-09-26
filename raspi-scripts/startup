@@ -47,7 +47,7 @@ sleep 30
 info 'Checking to see if startup script has changed...'
 current_git_sha=$(git rev-parse HEAD)
 curl_url="https://api.github.com/repos/jo12bar/medimap-viewer/compare/jo12bar:${current_git_sha}...jo12bar:HEAD"
-jq_program="if .files[].filename == \"raspi-scripts/startup\" then true else false"
+jq_program="if .files[].filename == \"raspi-scripts/startup\" then true else false end"
 changed_files_processed=$(curl -H 'Accept: application/vnd.github.v3+json' "${curl_url}" | jq "${jq_program}")
 if [[ "${changed_files_processed}" == *"true"* ]]; then
   info 'Startup script has been changed!'
