@@ -4,14 +4,14 @@ html
   head
     meta(charset="utf-8")
     title NOMC-medimap-viewer
-    - if (NODE_ENV === "production")
+    if (NODE_ENV === "production")
       link(rel="stylesheet" href="/css/styles.css" media="screen" title="no title" charset="utf-8")
     link(href="https://fonts.googleapis.com/css?family=Roboto+Condensed:400,700|Roboto:400,700" rel="stylesheet")
 
   body
 
     //- Widget that auto-reloads once per minute
-    .medimap-widget(data-clinic-id="573" data-auto-reload data-auto-reload-interval="60000") Loading medimap data...
+    .medimap-widget(data-clinic-id=medimapClinicId data-auto-reload data-auto-reload-interval="60000") Loading medimap data...
 
     .reveal
       .slides

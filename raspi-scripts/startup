@@ -55,6 +55,12 @@ else
   info 'Startup file unchanged!'
 fi
 
+# Check for local excutable startup file in $INSTALL_DIR/local
+if [ -x "${INSTALL_DIR}/local/startup.local.bash" ]; then
+  info "Executing ${INSTALL_DIR}/local/startup.local.bash"
+  "${INSTALL_DIR}/local/startup.local.bash"
+fi
+
 info 'Updating & rebuilding code'
 git pull origin master
 npm prune
@@ -84,7 +90,7 @@ info 'Giving server time to start up...'
 sleep 60
 
 # Start browser
-$DIR/startup-subscript &
+"$DIR/startup-subscript" &
 startup_subscript_PID=$!
 
 info 'Giving browser time to startup & fullscreening'
@@ -98,11 +104,11 @@ wait $startup_subscript_PID || let 'FAIL+=1'
 if [ "$FAIL" == "0" ]; then
   success 'Chromium closed with no errors!'
   user 'Press any key to continue...'
-  read -n1 -r key
+  read -n1 -r _
   exit 0
 else
   fail 'Chromium closed with errors! Check the logs!'
   user 'Press any key to continue...'
-  read -n1 -r key
+  read -n1 -r _
   exit 1
 fi

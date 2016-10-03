@@ -1,3 +1,4 @@
+const config = require('./local/config');
 const express = require('express');
 const fs = require('fs');
 const morgan = require('morgan');
@@ -54,7 +55,13 @@ app.get('/', (req, res) => {
     images.push(`/raspi-imported-photos/${filenameInfo.base}`);
   });
 
-  res.render('index', { images, NODE_ENV: process.env.NODE_ENV });
+  const viewConfig = {
+    images,
+    NODE_ENV: process.env.NODE_ENV,
+    medimapClinicId: config.clinicID || 1,
+  };
+
+  res.render('index', viewConfig);
 });
 
 app.listen(3000, () => {

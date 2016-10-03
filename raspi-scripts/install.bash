@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-INSTALL_DIR=$HOME/NOMC-medimap-viewer
+INSTALL_DIR=$HOME/medimap-viewer
 
 set -e
 
@@ -21,12 +21,8 @@ fail () {
 
 echo ''
 
-# Epiphany needs this to store it's config. Otherwise, if the first time it
-# ever starts up is in koisk mode, it simply won't start.
-mkdir -p "${HOME}/.config"
-
 info 'Cloning repo from git'
-git clone https://github.com/jo12bar/NOMC-medimap-viewer "${INSTALL_DIR}"
+git clone https://github.com/jo12bar/medimap-viewer "${INSTALL_DIR}"
 cd "${INSTALL_DIR}"
 success 'Repo cloned!'
 
