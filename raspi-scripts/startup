@@ -1,6 +1,9 @@
 #!/usr/bin/env bash
 # Mostly stolen from http://raspberrypi.stackexchange.com/a/43336/39077
 
+# Test startup file changed detection, update, & restart
+# (see jo12bar/medimap-viewer--NOMC-config commit 01c8d7d3c02def9b2288651265b2d0a2a7656b69)
+
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 INSTALL_DIR="${DIR}/.."
 HOME_DIR="${INSTALL_DIR}/.."
