@@ -16,29 +16,22 @@ My father works as a doctor at the [North Okanagan Medical Clinic](http://www.he
   2. At the main menu, select option 9 (Advance Options). ![Screenshot of `raspi-config`](./README-images/raspi-config-3.png)
   3. Select option A4 (SSH). ![Screenshot of `raspi-config`](./README-images/raspi-config-4.png)
   4. Enable the SSH server. ![Screenshot of `raspi-config`](./README-images/raspi-config-5.png)
-3. Exit `raspi-config`. Reboot.
-4. You'll now be logged in to the desktop. First, install the following packages:
-  ```bash
-  # Add kusti8's chromium repository as according to https://www.raspberrypi.org/forums/viewtopic.php?f=63&t=121195
-  wget -qO - http://bintray.com/user/downloadSubjectPublicKey?username=bintray | sudo apt-key add -
-  echo "deb http://dl.bintray.com/kusti8/chromium-rpi jessie main" | sudo tee -a /etc/apt/sources.list
-
-  # Refresh sources & install packages
-  sudo apt update
-  sudo apt install -y git usbmount build-essential xautomation unclutter chromium-browser jq
-
-  # Install nodejs as according to https://nodejs.org/en/download/package-manager/#debian-and-ubuntu-based-linux-distributions
-  curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -
-  sudo apt install -y nodejs
-  ```
-5. Run the install script from GitHub with the following command:
+  5. Exit `raspi-config`. Reboot.
+3. Run the install script from GitHub with the following command:
   ```bash
   curl -sL https://raw.githubusercontent.com/jo12bar/NOMC-medimap-viewer/master/raspi-scripts/install.bash | bash -
   ```
-6. Insert a USB stick loaded with images (in it's root directory), and reboot by running `sudo reboot`. The slideshow should start working - if anything goes wrong, then yell at me on [this repo's issue page](https://github.com/jo12bar/NOMC-medimap-viewer/issues).
+4. The latest versions of Raspbian come with Chromium preinstalled. If you do not have the latest version (it's probably a good idea to use it) then add kusti8's chromium repository as according to [this thread on the Raspberry Pi Forums](https://www.raspberrypi.org/forums/viewtopic.php?f=63&t=121195):
+  ```bash
+  wget -qO - http://bintray.com/user/downloadSubjectPublicKey?username=bintray | sudo apt-key add -
+  echo "deb http://dl.bintray.com/kusti8/chromium-rpi jessie main" | sudo tee -a /etc/apt/sources.list
+  sudo apt update
+  sudo apt install -y chromium-browser
+  ```
+5. Insert a USB stick loaded with images (in it's root directory), and reboot. The slideshow should start working - if anything goes wrong, then yell at me on [this repo's issue page](https://github.com/jo12bar/NOMC-medimap-viewer/issues).
 
 ## `npm` scripts
-NOMC-medimap-viewer uses [`scripty`](https://github.com/testdouble/scripty) to organize npm scripts. The scripts are defined in the [`scripts` directory](./scripts), and replicated in [`scripts-win`](./scripts-win) for compatibility. In `package.json` you'll see the word `scripty` as opposed to the script content you'd expect. For more info, see [scripty's GitHub](https://github.com/testdouble/scripty).
+`medimap-viewer` uses [`scripty`](https://github.com/testdouble/scripty) to organize npm scripts. The scripts are defined in the [`scripts` directory](./scripts), and replicated in [`scripts-win`](./scripts-win) for compatibility. In `package.json` you'll see the word `scripty` as opposed to the script content you'd expect. For more info, see [scripty's GitHub](https://github.com/testdouble/scripty).
 
 | Script             | Description     |
 | :----------------- | :------------------------------------------------------------------------ |

@@ -21,6 +21,15 @@ fail () {
 
 echo ''
 
+info 'Installing required packages'
+info 'NOTE: Using sudo for this'
+# Refresh sources & install packages
+sudo apt update
+sudo apt install -y git usbmount build-essential xautomation unclutter jq
+# Install nodejs as according to https://nodejs.org/en/download/package-manager/#debian-and-ubuntu-based-linux-distributions
+curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -
+sudo apt install -y nodejs
+
 info 'Cloning repo from git'
 git clone https://github.com/jo12bar/medimap-viewer "${INSTALL_DIR}"
 cd "${INSTALL_DIR}"
