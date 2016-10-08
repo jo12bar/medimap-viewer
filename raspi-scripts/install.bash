@@ -40,6 +40,11 @@ mkdir -p "${HOME}/.config/lxsession/LXDE"
 echo "@lxterminal --command=\"${INSTALL_DIR}/raspi-scripts/startup\"" >> "${HOME}/.config/lxsession/LXDE-pi/autostart"
 success 'Script added!'
 
+info 'Making ping work for all users (due to a bug in Raspbian...)'
+info 'NOTE: sudo must be used for this.'
+sudo chmod u+s /bin/ping
+success 'ping should now work for all users!'
+
 echo ''
 
 success 'All installed!'

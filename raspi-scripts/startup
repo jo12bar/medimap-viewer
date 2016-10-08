@@ -38,8 +38,12 @@ xset s off
 info 'Stopping video device from blanking'
 xset s noblank
 
-info 'Waiting 30s for a network connection...'
-sleep 30
+info 'Waiting for a network connection...'
+# Keep trying to ping www.example.com until we get a response, then break from
+# the loop.
+while true; do
+  ping -c1 www.example.com &> /dev/null && break
+done
 
 info 'Checking to see if startup script has changed...'
 current_git_sha=$(git rev-parse HEAD)
