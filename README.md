@@ -11,23 +11,33 @@ My father works as a doctor at the [North Okanagan Medical Clinic](http://www.he
 
 ## Installation (on a Raspberry Pi)
 1. Get yourself a Raspberry Pi 2 or 3 with a fresh install of Raspbian.
+
 2. **OPTIONAL**: Enable remote ssh access.
   1. Open terminal. Run `sudo raspi-config`.
+
   2. At the main menu, select option 9 (Advance Options). ![Screenshot of `raspi-config`](./README-images/raspi-config-3.png)
+
   3. Select option A4 (SSH). ![Screenshot of `raspi-config`](./README-images/raspi-config-4.png)
+
   4. Enable the SSH server. ![Screenshot of `raspi-config`](./README-images/raspi-config-5.png)
+
   5. Exit `raspi-config`. Reboot.
+
 3. Run the install script from GitHub with the following command:
+
   ```bash
   curl -sL https://raw.githubusercontent.com/jo12bar/NOMC-medimap-viewer/master/raspi-scripts/install.bash | bash -
   ```
+
 4. The latest versions of Raspbian come with Chromium preinstalled. If you do not have the latest version (it's probably a good idea to use it) then add kusti8's chromium repository as according to [this thread on the Raspberry Pi Forums](https://www.raspberrypi.org/forums/viewtopic.php?f=63&t=121195):
+
   ```bash
   wget -qO - http://bintray.com/user/downloadSubjectPublicKey?username=bintray | sudo apt-key add -
   echo "deb http://dl.bintray.com/kusti8/chromium-rpi jessie main" | sudo tee -a /etc/apt/sources.list
   sudo apt update
   sudo apt install -y chromium-browser
   ```
+
 5. Insert a USB stick loaded with images (in it's root directory), and reboot. The slideshow should start working - if anything goes wrong, then yell at me on [this repo's issue page](https://github.com/jo12bar/NOMC-medimap-viewer/issues).
 
 ## `npm` scripts
