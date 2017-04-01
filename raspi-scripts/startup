@@ -45,6 +45,17 @@ while true; do
   ping -c1 www.example.com &> /dev/null && break
 done
 
+# Install yarn if it isn't already installed.
+command -v yarn >/dev/null 2>&1 || {
+  warn "Looks like the yarn package manager isn't installed!"
+  info 'Installing...'
+  curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
+  echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
+  sudo apt update
+  sudo apt install -y yarn
+  success 'Installed yarn!'
+}
+
 info 'Checking to see if startup script has changed...'
 current_git_sha=$(git rev-parse HEAD)
 curl_url="https://api.github.com/repos/jo12bar/medimap-viewer/compare/jo12bar:${current_git_sha}...jo12bar:HEAD"
@@ -67,9 +78,8 @@ fi
 
 info 'Updating & rebuilding code'
 git pull origin master
-npm prune
-npm install
-npm run build
+yarn
+yarn build
 
 info "Temporarily moving test images out of ${INSTALL_DIR}/static/raspi-imported-photos"
 mv "${INSTALL_DIR}/static/raspi-imported-photos"/test-* "${INSTALL_DIR}"
