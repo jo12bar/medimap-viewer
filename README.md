@@ -40,7 +40,7 @@ My father works as a doctor at the [North Okanagan Medical Clinic](http://www.he
 
 5. Insert a USB stick loaded with images (in it's root directory), and reboot. The slideshow should start working - if anything goes wrong, then yell at me on [this repo's issue page](https://github.com/jo12bar/NOMC-medimap-viewer/issues).
 
-## `npm` scripts
+## `npm`/`yarn` scripts
 `medimap-viewer` uses [`scripty`](https://github.com/testdouble/scripty) to organize npm scripts. The scripts are defined in the [`scripts` directory](./scripts), and replicated in [`scripts-win`](./scripts-win) for compatibility. In `package.json` you'll see the word `scripty` as opposed to the script content you'd expect. For more info, see [scripty's GitHub](https://github.com/testdouble/scripty).
 
 | Script             | Description     |

@@ -35,13 +35,18 @@ git clone https://github.com/jo12bar/medimap-viewer "${INSTALL_DIR}"
 cd "${INSTALL_DIR}"
 success 'Repo cloned!'
 
+info 'Installing yarn'
+curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
+echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
+sudo apt update
+sudo apt install -y yarn
+
 info 'Installing packages from npm'
-npm prune
-npm install
+yarn
 success 'Packages installed!'
 
 info 'Building app'
-npm run build
+yarn build
 success 'App built!'
 
 info 'Adding autostart script for this user at ${HOME}/.config/lxsession/LXDE/autostart'
