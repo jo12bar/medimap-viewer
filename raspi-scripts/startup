@@ -100,8 +100,10 @@ rsync -vhr --delete \
 info 'Starting server in background'
 npm run start:production > "$INSTALL_DIR/server.log" 2>&1 &
 
-info 'Giving server time to start up...'
-sleep 60
+info 'Waiting for server to start up...'
+while true; do
+  pgrep -x 'node' && break
+done
 
 # Start browser
 "$DIR/startup-subscript" &
