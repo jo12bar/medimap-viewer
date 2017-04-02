@@ -47,7 +47,7 @@ done
 
 # Install yarn if it isn't already installed.
 command -v yarn >/dev/null 2>&1 || {
-  warn "Looks like the yarn package manager isn't installed!"
+  info "Looks like the yarn package manager isn't installed!"
   info 'Installing...'
   curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
   echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
