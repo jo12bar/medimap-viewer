@@ -21,6 +21,12 @@ static/raspi-imported-photos/*
 !static/raspi-imported-photos/test-*.png
 !static/raspi-imported-photos/test-*.gif
 
+# Ignore the file that the production server uses to tell the startup script
+# that it's running. The startup script is supposed to remove this, but devs
+# testing the production server might forget to remove it manually. This keeps
+# them from accidentally committing it :)
+.node-server-is-running
+
 # Logs
 logs
 *.log

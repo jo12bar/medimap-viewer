@@ -3,6 +3,7 @@ const express = require('express');
 const fs = require('fs');
 const morgan = require('morgan');
 const path = require('path');
+const touch = require('touch');
 
 const app = express();
 
@@ -66,4 +67,10 @@ app.get('/', (req, res) => {
 
 app.listen(3000, () => {
   console.log('App listening on port 3000');
+
+  // In production, let the startup script know that the server is running.
+  // File should be immediately removed by startup script.
+  if (process.env.NODE_ENV === 'production') {
+    touch.sync(path.join(__dirname, '.node-server-is-running'));
+  }
 });

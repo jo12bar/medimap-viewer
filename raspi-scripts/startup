@@ -101,9 +101,10 @@ info 'Starting server in background'
 npm run start:production > "$INSTALL_DIR/server.log" 2>&1 &
 
 info 'Waiting for server to start up...'
-while true; do
-  pgrep -x 'node' && break
+while [ ! -f "${HOME_DIR}/.node-server-is-running" ]; do
+  sleep 1
 done
+rm "${HOME_DIR}/.node-server-is-running"
 
 # Start browser
 "$DIR/startup-subscript" &
