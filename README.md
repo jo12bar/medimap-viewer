@@ -40,6 +40,9 @@ My father works as a doctor at the [North Okanagan Medical Clinic](http://www.he
 
 5. Insert a USB stick loaded with images (in it's root directory), and reboot. The slideshow should start working - if anything goes wrong, then yell at me on [this repo's issue page](https://github.com/jo12bar/NOMC-medimap-viewer/issues).
 
+## _IMPORTANT_: About that USB stick...
+The USB stick **cannot** be formatted as `exFAT` (which is usually the default for any store-bought stick). While you _can_ use the `exfat-fuse` and `exfat-utils` packages to mount these drives, this does not work with the (currently unmaintained) `usbmount` package that this project uses. As such, **please reformat any USB stick you plan to use as FAT32 using the tips detailed in [this guide](http://www.wikihow.com/Format-FAT32)**
+
 ## `npm`/`yarn` scripts
 `medimap-viewer` uses [`scripty`](https://github.com/testdouble/scripty) to organize npm scripts. The scripts are defined in the [`scripts` directory](./scripts), and replicated in [`scripts-win`](./scripts-win) for compatibility. In `package.json` you'll see the word `scripty` as opposed to the script content you'd expect. For more info, see [scripty's GitHub](https://github.com/testdouble/scripty).
 
