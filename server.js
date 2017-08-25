@@ -1,4 +1,6 @@
+const axios = require('axios');
 const config = require('./local/config');
+const dedent = require('dedent');
 const express = require('express');
 const fs = require('fs');
 const morgan = require('morgan');
@@ -59,10 +61,33 @@ app.get('/', (req, res) => {
   const viewConfig = {
     images,
     NODE_ENV: process.env.NODE_ENV,
-    medimapClinicId: config.clinicID || 1,
   };
 
   res.render('index', viewConfig);
+});
+
+// Proxy the request for medimap's widget to avoid crossorigin problems.
+// (Needed as crossorigin.me has stopped working.)
+app.get('/api/medimap-widget', (req, res) => {
+  const { clinicID = 1 } = config;
+  const url = `https://medimap.ca/clinics/widgetdata/${clinicID}.json`;
+
+  axios.get(url)
+    .then(({ data }) => {
+      res.json(data);
+    })
+    .catch((err) => {
+      res.status(500)
+        .message(dedent`
+          Unable to fetch medimap widget.
+
+            Response status: ${err.response.status}
+
+            Response message/ data: ${err.response.data}
+
+            Response headers: ${err.response.headers}
+        `);
+    });
 });
 
 app.listen(3000, () => {
