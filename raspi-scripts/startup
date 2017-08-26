@@ -65,6 +65,12 @@ if [ -x "${INSTALL_DIR}/local/startup.local.bash" ]; then
   "${INSTALL_DIR}/local/startup.local.bash"
 fi
 
+# Load up nvm, and use node.js version 8.x
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" # This loads nvm
+nvm install 8
+nvm use 8
+
 # Install yarn if it isn't already installed.
 command -v yarn >/dev/null 2>&1 || {
   info "Looks like the yarn package manager isn't installed!"
