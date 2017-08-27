@@ -7,7 +7,7 @@
 Medimap widget viewer + announcement slideshow for walk-in clinics in Canada, running on a Raspberry Pi.
 
 ## I'm sorry, what?
-My father works as a doctor at the [North Okanagan Medical Clinic](http://www.health-local.com/biz/walk-in-clinics/vernon/british-columbia/north-okanagan-medical-clinic/), and wanted a display running off a Raspberry Pi that could display info from [medimap.ca](https://medimap.ca) as well as a slideshow for announcements. I decided to run this off a Reveal.js slideshow.
+I wanted a display running off a Raspberry Pi that could display info from [medimap.ca](https://medimap.ca) as well as a slideshow for announcements. I decided to run this off a Reveal.js slideshow.
 
 ## Installation (on a Raspberry Pi)
 1. Get yourself a Raspberry Pi 2 or 3 with a fresh install of Raspbian.
@@ -26,7 +26,7 @@ My father works as a doctor at the [North Okanagan Medical Clinic](http://www.he
 3. Run the install script from GitHub with the following command:
 
   ```bash
-  curl -sL https://raw.githubusercontent.com/jo12bar/NOMC-medimap-viewer/master/raspi-scripts/install.bash | bash -
+  curl -sL https://raw.githubusercontent.com/jo12bar/medimap-viewer/master/raspi-scripts/install.bash | bash -
   ```
 
 4. The latest versions of Raspbian come with Chromium preinstalled. If you do not have the latest version (it's probably a good idea to use it) then add kusti8's chromium repository as according to [this thread on the Raspberry Pi Forums](https://www.raspberrypi.org/forums/viewtopic.php?f=63&t=121195):
