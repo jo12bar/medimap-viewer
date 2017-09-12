@@ -1,5 +1,7 @@
 # medimap-viewer
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/jo12bar/medimap-viewer.svg)](https://greenkeeper.io/)
+
 [![forthebadge](http://forthebadge.com/images/badges/gluten-free.svg)](http://forthebadge.com)
 
 ![Screenshot of NOMC-medimap-viewer](./README-images/NOMC-medimap-viewer.png)
