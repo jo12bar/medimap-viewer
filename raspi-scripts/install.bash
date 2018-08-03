@@ -27,7 +27,7 @@ info 'NOTE: Using sudo for this'
 sudo apt update
 sudo apt install -y git usbmount build-essential xautomation unclutter jq
 # Install nodejs as according to https://nodejs.org/en/download/package-manager/#debian-and-ubuntu-based-linux-distributions
-curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -
+curl -sL https://deb.nodesource.com/setup_10.x | sudo -E bash -
 sudo apt install -y nodejs
 
 info 'Installing nvm (Node Version Manager)'
