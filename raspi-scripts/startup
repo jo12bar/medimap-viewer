@@ -44,6 +44,7 @@ info 'Waiting for a network connection...'
 while true; do
   ping -c1 www.example.com &> /dev/null && break
 done
+success 'Network connected!'
 
 info 'Checking to see if startup script has changed...'
 current_git_sha=$(git rev-parse HEAD)
@@ -51,18 +52,21 @@ curl_url="https://api.github.com/repos/jo12bar/medimap-viewer/compare/jo12bar:${
 jq_program="if .files[].filename == \"raspi-scripts/startup\" then true else false end"
 changed_files_processed=$(curl -H 'Accept: application/vnd.github.v3+json' "${curl_url}" | jq "${jq_program}")
 if [[ "${changed_files_processed}" == *"true"* ]]; then
-  info 'Startup script has been changed!'
+  success 'Startup script has been changed!'
   info 'Going to update code, then restart.'
   git pull origin master
   reboot
 else
-  info 'Startup file unchanged!'
+  success 'Startup file unchanged!'
 fi
 
 # Check for local excutable startup file in $INSTALL_DIR/local
 if [ -x "${INSTALL_DIR}/local/startup.local.bash" ]; then
   info "Executing ${INSTALL_DIR}/local/startup.local.bash"
   "${INSTALL_DIR}/local/startup.local.bash"
+else
+  fail "No startup file found in ${INSTALL_DIR}/local."
+  user 'Did you remember to install local config? The server will probably crash as a result.'
 fi
 
 # Load up nvm, and use node.js version 10.x
