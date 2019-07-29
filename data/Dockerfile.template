@@ -1,0 +1,10 @@
+FROM balenalib/%%BALENA_MACHINE_NAME%%-debian-node:10-stretch-run
+
+WORKDIR /usr/src/app
+
+COPY package*.json ./
+
+RUN JOBS=MAX npm install --production
+COPY . ./
+
+CMD ["npm", "start"]
