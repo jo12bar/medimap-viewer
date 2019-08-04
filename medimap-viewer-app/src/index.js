@@ -1,4 +1,8 @@
-const { app, BrowserWindow } = require('electron');
+const electron = require('electron');
+const { app, BrowserWindow } = electron;
+
+/** Whether or not the application is running inside a balena container. */
+const IS_BALENA = !!(parseInt(process.env.BALENA));
 
 // Handle creating/removing shortcuts on Windows when installing/uninstalling.
 if (require('electron-squirrel-startup')) { // eslint-disable-line global-require
@@ -10,17 +14,29 @@ if (require('electron-squirrel-startup')) { // eslint-disable-line global-requir
 let mainWindow;
 
 const createWindow = () => {
+  const { width, height } = electron.screen.getPrimaryDisplay().workAreaSize;
+
   // Create the browser window.
   mainWindow = new BrowserWindow({
-    width: 800,
-    height: 600,
+    width: IS_BALENA ? width : 800,
+    height: IS_BALENA ? height : 600,
+    frame: IS_BALENA ? false : true,
+    title: 'medimap-viewer-app',
+    kiosk: IS_BALENA ? true : false,
+
+    webPreferences: {
+      sandbox: false,
+      nodeIntegration: true,
+    }
   });
 
   // and load the index.html of the app.
   mainWindow.loadURL(`file://${__dirname}/index.html`);
 
-  // Open the DevTools.
-  mainWindow.webContents.openDevTools();
+  // Open the DevTools when not running in balena.
+  if (!IS_BALENA) {
+    mainWindow.webContents.openDevTools();
+  }
 
   // Emitted when the window is closed.
   mainWindow.on('closed', () => {
