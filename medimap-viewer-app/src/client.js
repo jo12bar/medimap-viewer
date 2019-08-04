@@ -37,5 +37,5 @@ document.documentElement.addEventListener('mousemove', throttled(200, () => {
     document.documentElement.classList.remove('hide-cursor');
   }
 
-  cursorHideTimerID = setTimeout(hideCursorFromBody, 2000);
+  cursorHideTimerID = setTimeout(hideCursorFromDocument, 2000);
 }));
