@@ -4,7 +4,6 @@
   "version": "1.0.0",
   "description": "The Electron component for the Medimap Viewer.",
   "main": "src/index.js",
-
   "scripts": {
     "start": "electron-forge start",
     "package": "electron-forge package",
@@ -12,7 +11,6 @@
     "publish": "electron-forge publish",
     "lint": "echo \"No linting configured\""
   },
-
   "keywords": [
     "electron",
     "balena",
@@ -20,17 +18,17 @@
     "medimap",
     "kiosk"
   ],
-
   "author": {
     "name": "Johann Barnard",
     "email": "johann.b@telus.net"
   },
-
   "license": "MIT",
-
   "config": {
     "forge": {
-      "packagerConfig": {},
+      "packagerConfig": {
+        "asar": true
+      },
+      
       "makers": [
         {
           "name": "@electron-forge/maker-squirrel",
@@ -52,14 +50,16 @@
           "name": "@electron-forge/maker-rpm",
           "config": {}
         }
+      ],
+      "plugins": [
+        ["@electron-forge/plugin-auto-unpack-natives"]
       ]
     }
   },
-
   "dependencies": {
+    "@electron-forge/plugin-auto-unpack-natives": "^6.0.0-beta.43",
     "electron-squirrel-startup": "^1.0.0"
   },
-
   "devDependencies": {
     "@electron-forge/cli": "6.0.0-beta.43",
     "@electron-forge/maker-deb": "6.0.0-beta.43",
