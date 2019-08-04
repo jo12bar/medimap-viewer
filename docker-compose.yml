@@ -11,8 +11,10 @@ services:
     volumes:
       - "resin-data:/data"
     labels:
-      io.balena.features.kernel-modules: '1'
-      io.balena.features.firmware: '1'
-      io.balena.features.dbus: '1'
-      io.balena.features.supervisor-api: '1'
-      io.balena.features.balena-api: '1'
+      io.balena.features.kernel-modules: true
+      io.balena.features.firmware: true
+      io.balena.features.dbus: true
+      io.balena.features.supervisor-api: true
+      io.balena.features.balena-api: true
+    environment:
+      - "DBUS_SYSTEM_BUS_ADDRESS=unix:path=/host/run/dbus/system_bus_socket"
