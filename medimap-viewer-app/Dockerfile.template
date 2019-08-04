@@ -74,7 +74,7 @@ RUN install_packages \
 # Set up the 'startx' command to run like a kiosk
 RUN echo '#!/usr/bin/env bash' > /etc/X11/xinit/xserverrc \
   && echo '' >> /etc/X11/xinit/xserverrc \
-  && echo 'exec /usr/bin/X -s 0 dpms -nocursor -nolisten tcp "$@"' >> /etc/X11/xinit/xserverrc
+  && echo 'exec /usr/bin/X -s 0 dpms -nolisten tcp "$@"' >> /etc/X11/xinit/xserverrc
 
 # Copy the built app from the build step
 COPY --from=build /usr/src/app/out/medimap-viewer-app-linux-armv7l/ ./
