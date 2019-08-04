@@ -23,17 +23,18 @@ const throttled = (delay, f) => {
   }
 }
 
+/** Hide the cursor from an element. */
 const hideCursor = el => el.classList.add('hide-cursor');
 
-const hideCursorFromBody = () => hideCursor(document.body);
+const hideCursorFromDocument = () => hideCursor(document.documentElement);
 
-document.body.addEventListener('mousemove', throttled(200, () => {
+document.documentElement.addEventListener('mousemove', throttled(200, () => {
   if (cursorHideTimerID !== null) {
     clearTimeout(cursorHideTimerID);
   }
 
-  if (document.body.classList.contains('hide-cursor')) {
-    document.body.classList.remove('hide-cursor');
+  if (document.documentElement.classList.contains('hide-cursor')) {
+    document.documentElement.classList.remove('hide-cursor');
   }
 
   cursorHideTimerID = setTimeout(hideCursorFromBody, 2000);
