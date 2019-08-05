@@ -87,3 +87,7 @@ typings/
 
 # Electron-Forge
 out/
+
+# Generated TypeScript definitions for CSS Modules files
+# (generated during build by typed-css-modules-webpack-plugin)
+*.css.d.ts

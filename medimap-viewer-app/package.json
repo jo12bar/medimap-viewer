@@ -5,10 +5,10 @@
   "description": "The Electron component for the Medimap Viewer.",
   "main": "./.webpack/main",
   "scripts": {
-    "start": "electron-forge start",
-    "package": "electron-forge package",
-    "make": "electron-forge make",
-    "publish": "electron-forge publish",
+    "start": "cross-env NODE_ENV=development electron-forge start",
+    "package": "cross-env NODE_ENV=production electron-forge package",
+    "make": "cross-env NODE_ENV=production electron-forge make",
+    "publish": "cross-env NODE_ENV=production electron-forge publish",
     "lint": "echo \"No linting configured\""
   },
   "keywords": [
@@ -91,13 +91,16 @@
     "@electron-forge/plugin-auto-unpack-natives": "^6.0.0-beta.43",
     "@electron-forge/plugin-webpack": "^6.0.0-beta.43",
     "@marshallofsound/webpack-asset-relocator-loader": "^0.5.0",
+    "@types/mini-css-extract-plugin": "^0.8.0",
     "@types/react": "^16.8.24",
     "@types/react-dom": "^16.8.5",
     "babel-loader": "^8.0.6",
+    "cross-env": "^5.2.0",
     "css-loader": "^3.1.0",
     "electron": "6.0.0",
+    "mini-css-extract-plugin": "^0.8.0",
     "node-loader": "^0.6.0",
-    "style-loader": "^0.23.1",
+    "typed-css-modules-webpack-plugin": "^0.1.2",
     "typescript": "^3.5.3"
   }
 }
