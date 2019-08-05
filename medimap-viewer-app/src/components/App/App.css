@@ -1,4 +1,29 @@
-.comicSans {
-  font-family: "Comic Sans MS", cursive;
-  color: red;
+.app {
+  min-height: 100%;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  grid-template-rows: auto 1fr;
+  grid-template-areas:
+    "header   header"
+    "waitTime slideshow";
+  grid-gap: 2rem;
+}
+
+.header {
+  grid-area: header;
+}
+
+.waitTime {
+  grid-area: waitTime;
+  margin-left: 2rem;
+}
+
+.slideshow {
+  grid-area: slideshow;
+  margin-right: 2rem;
+}
+
+.waitTime, .slideshow {
+  margin-bottom: 2rem;
 }

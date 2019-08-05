@@ -1,13 +1,16 @@
 import * as React from 'react';
 import { hot } from 'react-hot-loader/root';
 
+import Header from '../Header/Header';
+import Panel from '../Panel/Panel';
+
 import * as styles from './App.css';
 
 const App = () => (
-  <div>
-    <h1>💖 Hello World! <span className={styles.comicSans}>he he he he</span></h1>
-    <p>Welcome to your Electron/ React/ TypeScript application.</p>
-    <p><sub>geez, this is getting bloated...</sub></p>
+  <div className={styles.app}>
+    <Header className={styles.header} />
+    <Panel className={styles.waitTime}><p>Welcome to your Electron/ React/ TypeScript application.</p></Panel>
+    <Panel className={styles.slideshow}><p><sub>geez, this is getting bloated...</sub></p></Panel>
   </div>
 );
 
