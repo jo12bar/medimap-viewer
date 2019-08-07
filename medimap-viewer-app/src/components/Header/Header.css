@@ -1,9 +1,13 @@
+@value v-colors: "../../colors.css";
+@value c-red, c-magenta from v-colors;
+
 .header {
+  composes: emphasized-text-bg-colors from v-colors;
   padding: 2rem;
-  border-bottom: 1px solid black;
+  border-bottom: 3px solid c-magenta;
 }
 
 .comicSans {
   font-family: "Comic Sans MS", cursive;
-  color: red;
+  color: c-red;
 }

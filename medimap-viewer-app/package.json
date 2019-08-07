@@ -100,6 +100,9 @@
     "electron": "6.0.0",
     "mini-css-extract-plugin": "^0.8.0",
     "node-loader": "^0.6.0",
+    "postcss-loader": "^3.0.0",
+    "postcss-modules-values": "^3.0.0",
+    "postcss-preset-env": "^6.7.0",
     "typed-css-modules-webpack-plugin": "^0.1.2",
     "typescript": "^3.5.3"
   }

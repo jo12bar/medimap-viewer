@@ -1,9 +1,16 @@
+@value c-base03, c-base0 from "./colors.css";
+
 * {
   box-sizing: border-box;
 }
 
 html, body, :global(#app) {
   height: 100%;
+}
+
+html {
+  background-color: c-base03;
+  color: c-base0;
 }
 
 body {

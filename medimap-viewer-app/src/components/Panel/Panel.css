@@ -1,5 +1,9 @@
+@value v-colors: "../../colors.css";
+@value c-cyan from v-colors;
+
 .panel {
+  composes: emphasized-text-bg-colors from v-colors;
   padding: 2rem;
-  border: 1px solid black;
+  border: 0.2rem solid c-cyan;
   border-radius: 1.5rem;
 }
