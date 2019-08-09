@@ -1,9 +1,13 @@
-import * as React from 'react';
+import React from 'react';
 
-import * as styles from './Panel.css';
+import styles from './Panel.css';
 
-const Panel = ({ children, className, ...props }) => (
-  <section className={`${className} ${styles.panel}`} {...props}>
+interface PanelTypes {
+  className: string,
+}
+
+const Panel: React.FC<PanelTypes> = ({ children, className }) => (
+  <section className={`${className} ${styles.panel}`}>
     {children}
   </section>
 );

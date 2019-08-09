@@ -1,10 +1,10 @@
-import * as React from 'react';
+import React from 'react';
 import { hot } from 'react-hot-loader/root';
 
 import Header from '../Header/Header';
 import Panel from '../Panel/Panel';
 
-import * as styles from './App.css';
+import styles from './App.css';
 
 const App = () => (
   <div className={styles.app}>

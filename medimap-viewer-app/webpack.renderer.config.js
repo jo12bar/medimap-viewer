@@ -44,7 +44,7 @@ module.exports = {
 
   resolve: {
     extensions: ['.ts', '.tsx', '.js', '.jsx', '.json'],
-    alias: { 'react-dom': '@hot-loader/react-dom' },
+    alias: { 'react-dom': devMode ? '@hot-loader/react-dom' : 'react-dom' },
   },
 
   plugins: [

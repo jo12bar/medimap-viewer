@@ -1,8 +1,12 @@
-import * as React from 'react';
+import React from 'react';
 
-import * as styles from './Header.css';
+import styles from './Header.css';
 
-const Header = ({ className }) => (
+interface HeaderProps {
+  className: string,
+}
+
+const Header: React.FC<HeaderProps> = ({ className }) => (
   <header className={`${className} ${styles.header}`}>
     <h1>💖 Hello World! <span className={styles.comicSans}>he he he he he he he he he</span></h1>
   </header>

@@ -1,15 +1,15 @@
 // This needs to be imported before React or ReactDOM:
 import 'react-hot-loader';
 
-import * as React from 'react';
-import * as ReactDOM from 'react-dom';
+import React from 'react';
+import ReactDOM from 'react-dom';
 
 import App from './components/App/App';
 import { throttled, hideCursorFromDocument } from './util/util';
 
 import './index.css';
 
-let cursorHideTimerID = null;
+let cursorHideTimerID: ReturnType<typeof setTimeout> | null = null;
 
 document.documentElement.addEventListener('mousemove', throttled(() => {
   if (cursorHideTimerID !== null) {
