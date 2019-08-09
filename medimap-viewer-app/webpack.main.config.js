@@ -1,5 +1,5 @@
 module.exports = {
-  entry: './src/main.js',
+  entry: './src/main.ts',
 
   module: {
     rules: [
@@ -19,9 +19,29 @@ module.exports = {
         },
       },
 
-      // Put the rest of the webpack loader rules in this array.
-      // See https://github.com/electron-userland/electron-forge/blob/master/packages/template/webpack/tmpl/webpack.rules.js
-      // for an example.
-    ]
+      // Javascript and Typescript support. Note that we have to redefine the
+      // babel config here so we can get a different browserslist config. Might
+      // be a different way to do this, but I'm too lazy... ;)
+      {
+        test: /\.(js|jsx|ts|tsx)$/,
+        exclude: /node_modules/,
+        use: {
+          loader: 'babel-loader',
+          options: {
+            presets: [
+              ['@babel/preset-env', {
+                targets: 'node 12',
+              }],
+              '@babel/preset-react',
+              '@babel/preset-typescript',
+            ],
+          },
+        }
+      },
+    ],
+  },
+
+  resolve: {
+    extensions: ['.ts', '.tsx', '.js', '.jsx', '.json'],
   },
 };

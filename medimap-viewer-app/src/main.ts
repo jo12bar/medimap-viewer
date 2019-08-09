@@ -1,8 +1,9 @@
-const electron = require('electron');
-const { app, BrowserWindow } = electron;
+import electron, { app, BrowserWindow } from 'electron';
+
+declare const MAIN_WINDOW_WEBPACK_ENTRY: string;
 
 /** Whether or not the application is running inside a balena container. */
-const IS_BALENA = !!(parseInt(process.env.BALENA));
+const IS_BALENA = process.env.BALENA ? !!(parseInt(process.env.BALENA)) : false;
 
 // Handle creating/removing shortcuts on Windows when installing/uninstalling.
 if (require('electron-squirrel-startup')) { // eslint-disable-line global-require
@@ -11,7 +12,7 @@ if (require('electron-squirrel-startup')) { // eslint-disable-line global-requir
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
-let mainWindow;
+let mainWindow: electron.BrowserWindow | null = null;
 
 const createWindow = () => {
   const { width, height } = electron.screen.getPrimaryDisplay().workAreaSize;
