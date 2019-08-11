@@ -91,3 +91,6 @@ out/
 # Generated TypeScript definitions for CSS Modules files
 # (generated during build by typed-css-modules-webpack-plugin)
 *.css.d.ts
+
+# Local environment variables, which should *not* be uploaded to GitHub.
+.env

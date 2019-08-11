@@ -1,4 +1,5 @@
 import electron, { app, BrowserWindow } from 'electron';
+import { updateMedimapData } from './medimap-data';
 
 declare const MAIN_WINDOW_WEBPACK_ENTRY: string;
 
@@ -13,6 +14,12 @@ if (require('electron-squirrel-startup')) { // eslint-disable-line global-requir
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
 let mainWindow: electron.BrowserWindow | null = null;
+
+/**
+ * The amount of time, in milliseconds, to wait before fetching more medimap data.
+ */
+const DATA_FETCH_DELAY = 0.5 * 60 * 1000;
+
 
 const createWindow = () => {
   const { width, height } = electron.screen.getPrimaryDisplay().workAreaSize;
@@ -46,6 +53,9 @@ const createWindow = () => {
     // when you should delete the corresponding element.
     mainWindow = null;
   });
+
+  setInterval(() => mainWindow && updateMedimapData(mainWindow), DATA_FETCH_DELAY);
+  updateMedimapData(mainWindow);
 };
 
 // This method will be called when Electron has finished
@@ -69,8 +79,5 @@ app.on('activate', () => {
     createWindow();
   }
 });
-
-// In this file you can include the rest of your app's specific main process
-// code. You can also put them in separate files and import them here.
 
 console.log(`Running in environment ${process.env.NODE_ENV}`);

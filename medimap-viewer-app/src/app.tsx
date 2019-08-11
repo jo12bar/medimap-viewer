@@ -1,6 +1,7 @@
 // This needs to be imported before React or ReactDOM:
 import 'react-hot-loader';
 
+import { ipcRenderer } from 'electron';
 import React from 'react';
 import ReactDOM from 'react-dom';
 
@@ -22,6 +23,8 @@ document.documentElement.addEventListener('mousemove', throttled(() => {
 
   cursorHideTimerID = setTimeout(hideCursorFromDocument, 2000);
 }, 200));
+
+ipcRenderer.on('medimap-new-data', (_e, msg) => { console.log(msg); document.body.append(msg) });
 
 ReactDOM.render(<App />, document.getElementById('app'));
 
