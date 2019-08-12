@@ -75,6 +75,7 @@
   },
   "dependencies": {
     "@hot-loader/react-dom": "^16.8.6",
+    "cheerio": "^1.0.0-rc.3",
     "dotenv": "^8.0.0",
     "electron-squirrel-startup": "^1.0.0",
     "node-fetch": "^2.6.0",
@@ -95,6 +96,7 @@
     "@electron-forge/plugin-auto-unpack-natives": "^6.0.0-beta.43",
     "@electron-forge/plugin-webpack": "^6.0.0-beta.43",
     "@marshallofsound/webpack-asset-relocator-loader": "^0.5.0",
+    "@types/cheerio": "^0.22.13",
     "@types/mini-css-extract-plugin": "^0.8.0",
     "@types/node-fetch": "^2.5.0",
     "@types/react": "^16.8.24",

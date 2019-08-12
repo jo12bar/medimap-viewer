@@ -24,7 +24,7 @@ document.documentElement.addEventListener('mousemove', throttled(() => {
   cursorHideTimerID = setTimeout(hideCursorFromDocument, 2000);
 }, 200));
 
-ipcRenderer.on('medimap-new-data', (_e, msg) => { console.log(msg); document.body.append(msg) });
+ipcRenderer.on('medimap-new-data', console.log);
 
 ReactDOM.render(<App />, document.getElementById('app'));
 
