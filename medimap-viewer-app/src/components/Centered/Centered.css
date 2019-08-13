@@ -1,0 +1,13 @@
+.centered {
+  display: flex;
+  height: 100%;
+  width: 100%;
+}
+
+.horizontally {
+  justify-content: center;
+}
+
+.vertically {
+  align-items: center;
+}

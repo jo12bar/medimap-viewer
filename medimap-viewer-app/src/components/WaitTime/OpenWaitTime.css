@@ -1,0 +1,17 @@
+@value c-green from '../../colors.css';
+
+.openWaitTime {
+  color: c-green;
+  font-size: 1.7em;
+  text-align: center;
+}
+
+.openWaitTime p {
+  margin: 0;
+}
+
+.numberMinutes {
+  font-size: 4em;
+  font-weight: bold;
+  margin: 0.125em 0;
+}

@@ -2,12 +2,13 @@
   min-height: 100%;
   width: 100%;
   display: grid;
-  grid-template-columns: minmax(min-content, 30rem) 2fr;
+  grid-template-columns: minmax(20rem, 1fr) 3fr;
   grid-template-rows: auto 1fr;
   grid-template-areas:
     "header   header"
     "waitTime slideshow";
   grid-gap: 2rem;
+  justify-content: stretch;
 }
 
 .header {
