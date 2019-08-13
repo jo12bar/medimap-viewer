@@ -4,21 +4,32 @@ import fetch from 'node-fetch';
 import { CLINIC_ID } from './config';
 
 export enum MedimapDataMsgTypes {
-  CLOSED = 'MedimapClosedData',
-  OPEN   = 'MedimapOpenData',
-  ERROR  = 'MedimapErrorData',
+  CLOSED =      'MedimapClosedData',
+  OPEN   =      'MedimapOpenData',
+  AT_CAPACITY = 'MedimapAtCapacityData',
+  ERROR  =      'MedimapErrorData',
 }
 
 export interface MedimapClosedData {
   type: MedimapDataMsgTypes.CLOSED,
-  open: false,
 }
+
+export const isMedimapClosedData = (x: any): x is MedimapClosedData => (
+  x.type === MedimapDataMsgTypes.CLOSED
+);
 
 export interface MedimapOpenData {
   type: MedimapDataMsgTypes.OPEN,
-  open: true,
   waitTime: number,
   lastUpdated: string,
+}
+
+export const isMedimapOpenData = (x: any): x is MedimapOpenData => (
+  x.type === MedimapDataMsgTypes.OPEN
+);
+
+export interface MedimapAtCapacityData {
+  type: MedimapDataMsgTypes.AT_CAPACITY,
 }
 
 export interface MedimapErrorData {
@@ -26,7 +37,11 @@ export interface MedimapErrorData {
   errorMsg: string,
 }
 
-export type MedimapData = MedimapErrorData | MedimapClosedData | MedimapOpenData;
+export const isMedimapErrorData = (x: any): x is MedimapErrorData => (
+  x.type === MedimapDataMsgTypes.ERROR
+);
+
+export type MedimapData = MedimapErrorData | MedimapClosedData | MedimapAtCapacityData | MedimapOpenData;
 
 if (process.env.MEDIMAP_CLINIC_ID === undefined) {
   console.error('The environment variable MEDIMAP_CLINIC_ID was not set.')
@@ -60,7 +75,7 @@ export const getMedimapData = async (): Promise<MedimapData> => {
     const medimapData: MedimapErrorData = {
       type: MedimapDataMsgTypes.ERROR,
       errorMsg: `Could not determine availability (availability === ${availability})`,
-    }
+    };
     return medimapData;
   }
 
@@ -68,8 +83,21 @@ export const getMedimapData = async (): Promise<MedimapData> => {
   if (availability === 'CLOSED') {
     const medimapData: MedimapClosedData = {
       type: MedimapDataMsgTypes.CLOSED,
-      open: false,
-    }
+    };
+    return medimapData;
+  }
+
+  // At this point, we know for sure that availability === 'OPEN'. However,
+  // there is an edge case for when the clinic is at capacity, and cannot accept
+  // any more patients for the day. I can't tell if the text inside the widget
+  // is constant in this case, and its a difficult case to test (due to its
+  // relative rarity). However, we can check for the existence of a div with
+  // the class .mm-widget-at-capacity.
+
+  if ($('.mm-widget-at-capacity').length) {
+    const medimapData: MedimapAtCapacityData = {
+      type: MedimapDataMsgTypes.AT_CAPACITY,
+    };
     return medimapData;
   }
 
@@ -78,7 +106,6 @@ export const getMedimapData = async (): Promise<MedimapData> => {
 
   const medimapData: MedimapOpenData = {
     type: MedimapDataMsgTypes.OPEN,
-    open: true,
     waitTime,
     lastUpdated,
   };
