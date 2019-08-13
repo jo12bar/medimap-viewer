@@ -3,7 +3,7 @@ import { hot } from 'react-hot-loader/root';
 
 import Centered from '../Centered/Centered';
 import Header from '../Header/Header';
-import OpenWaitTime from '../WaitTime/OpenWaitTime';
+import WaitTime from '../WaitTime/WaitTime';
 import Panel from '../Panel/Panel';
 
 import styles from './App.css';
@@ -13,7 +13,7 @@ const App = () => (
     <Header className={styles.header} />
     <Panel className={styles.waitTime}>
       <Centered horizontally={true} vertically={true}>
-        <OpenWaitTime />
+        <WaitTime />
       </Centered>
     </Panel>
     <Panel className={styles.slideshow}><p><sub>geez, this is getting bloated...</sub></p></Panel>

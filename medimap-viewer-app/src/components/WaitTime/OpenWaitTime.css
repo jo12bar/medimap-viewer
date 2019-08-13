@@ -1,4 +1,4 @@
-@value c-green from '../../colors.css';
+@value c-green, c-blue from '../../colors.css';
 
 .openWaitTime {
   color: c-green;
@@ -8,10 +8,16 @@
 
 .openWaitTime p {
   margin: 0;
+  margin-bottom: 0.5em;
 }
 
 .numberMinutes {
   font-size: 4em;
   font-weight: bold;
-  margin: 0.125em 0;
+  margin: 0.125em 0 !important;
+}
+
+.lastUpdated {
+  color: c-blue;
+  font-size: 0.6em;
 }
