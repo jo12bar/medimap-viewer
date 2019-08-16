@@ -30,4 +30,4 @@ for font in "${robotomono_fonts[@]}"; do
 done
 
 # Update font cache
-fc-cache -v
+fc-cache -f -v
