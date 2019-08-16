@@ -32,6 +32,10 @@ export interface MedimapAtCapacityData {
   type: MedimapDataMsgTypes.AT_CAPACITY,
 }
 
+export const isMedimapAtCapacityData = (x: any): x is MedimapAtCapacityData => (
+  x.type === MedimapDataMsgTypes.AT_CAPACITY
+);
+
 export interface MedimapErrorData {
   type: MedimapDataMsgTypes.ERROR,
   errorMsg: string,
@@ -42,6 +46,9 @@ export const isMedimapErrorData = (x: any): x is MedimapErrorData => (
 );
 
 export type MedimapData = MedimapErrorData | MedimapClosedData | MedimapAtCapacityData | MedimapOpenData;
+export const isMedimapData = (x: any): x is MedimapData => (
+  isMedimapOpenData(x) || isMedimapClosedData(x) || isMedimapErrorData(x) || isMedimapAtCapacityData(x)
+);
 
 if (process.env.MEDIMAP_CLINIC_ID === undefined) {
   console.error('The environment variable MEDIMAP_CLINIC_ID was not set.')

@@ -1,9 +1,14 @@
 import React from 'react';
 import OpenWaitTime from './OpenWaitTime';
-import * as medimapData from '../../medimap-data';
+import { ipcRenderer } from 'electron';
+import {
+  MedimapData,
+  isMedimapData,
+  isMedimapOpenData,
+} from '../../medimap-data';
 
 interface WaitTimeState {
-  lastMsg: medimapData.MedimapData | null,
+  lastMsg: MedimapData | null,
 }
 
 /**
@@ -11,12 +16,23 @@ interface WaitTimeState {
  * from electron's main process transmitted via ipc.
  */
 class WaitTime extends React.Component<{}, WaitTimeState> {
-  constructor(props: {}) {
-    super(props);
+  state: Readonly<WaitTimeState> = {
+    lastMsg: null,
+  };
 
-    this.state = {
-      lastMsg: null,
+  private onIpcDataRecieved = (_e: any, msg: any) => {
+    console.log('Got msg', msg);
+    if (isMedimapData(msg)) {
+      this.setState({ lastMsg: msg });
     }
+  }
+
+  componentDidMount() {
+    ipcRenderer.addListener('medimap-new-data', this.onIpcDataRecieved);
+  }
+
+  componentWillUnmount() {
+    ipcRenderer.removeListener('medimap-new-data', this.onIpcDataRecieved);
   }
 
   render() {
@@ -25,6 +41,10 @@ class WaitTime extends React.Component<{}, WaitTimeState> {
     if (lastMsg === null) {
       // We haven't gotten any data yet.
       return <OpenWaitTime lastUpdated='a while ago' waitTime={0} />
+    }
+    else if (isMedimapOpenData(lastMsg)) {
+      // Clinic is open and accepting patients.
+      return <OpenWaitTime lastUpdated={lastMsg.lastUpdated} waitTime={lastMsg.waitTime} />
     }
     else {
       // TODO: Replace the below with an error component!
