@@ -3,7 +3,7 @@
 # Downloads various Google fonts to /usr/local/share/fonts, and runs fc-cache.
 
 COMMIT="724bf98e9f5cb98a1d3d5044f45a2e286b817401"
-BASE_URL="https://github.com/google/fonts/tree/$COMMIT/"
+BASE_URL="https://raw.githubusercontent.com/google/fonts/$COMMIT/"
 
 # Roboto
 roboto_folder="apache/roboto"
