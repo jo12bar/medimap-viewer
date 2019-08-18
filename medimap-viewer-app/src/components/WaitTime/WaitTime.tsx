@@ -1,10 +1,14 @@
 import React from 'react';
 import OpenWaitTime from './OpenWaitTime';
+import ClosedWaitTime from './ClosedWaitTime';
+import AtCapacityWaitTime from './AtCapacityWaitTime';
 import { ipcRenderer } from 'electron';
 import {
   MedimapData,
   isMedimapData,
   isMedimapOpenData,
+  isMedimapClosedData,
+  isMedimapAtCapacityData,
 } from '../../medimap-data';
 
 interface WaitTimeState {
@@ -40,15 +44,23 @@ class WaitTime extends React.Component<{}, WaitTimeState> {
 
     if (lastMsg === null) {
       // We haven't gotten any data yet.
-      return <OpenWaitTime lastUpdated='a while ago' waitTime={0} />
+      return <OpenWaitTime lastUpdated='a while ago' waitTime={0} />;
     }
     else if (isMedimapOpenData(lastMsg)) {
       // Clinic is open and accepting patients.
-      return <OpenWaitTime lastUpdated={lastMsg.lastUpdated} waitTime={lastMsg.waitTime} />
+      return <OpenWaitTime lastUpdated={lastMsg.lastUpdated} waitTime={lastMsg.waitTime} />;
+    }
+    else if (isMedimapClosedData(lastMsg)) {
+      // Clinic is closed.
+      return <ClosedWaitTime />;
+    }
+    else if (isMedimapAtCapacityData(lastMsg)) {
+      // Clinic is open, but not accepting patients.
+      return <AtCapacityWaitTime />;
     }
     else {
       // TODO: Replace the below with an error component!
-      return <OpenWaitTime lastUpdated='I dunno. Something weird is going on.' waitTime={-Infinity} />
+      return <OpenWaitTime lastUpdated='I dunno. Something weird is going on.' waitTime={-Infinity} />;
     }
   }
 }

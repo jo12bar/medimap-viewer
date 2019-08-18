@@ -1,0 +1,8 @@
+@value c-red from '../../colors.css';
+
+.closedWaitTime {
+  color: c-red;
+  font-size: calc(2 * 1.7em);
+  font-weight: bold;
+  text-align: center;
+}

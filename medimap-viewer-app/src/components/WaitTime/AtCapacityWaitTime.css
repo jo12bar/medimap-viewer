@@ -1,0 +1,8 @@
+@value c-yellow from '../../colors.css';
+
+.atCapacityWaitTime {
+  color: c-yellow;
+  font-size: calc(1.5 * 1.7em);
+  font-weight: bold;
+  text-align: center;
+}
