@@ -1,8 +1,9 @@
 import React from 'react';
 import { hot } from 'react-hot-loader/root';
+import { CLINIC_NAME } from '../../config';
 
 import Centered from '../Centered/Centered';
-import Header from '../Header/Header';
+import HeaderContainer from '../Header/HeaderContainer';
 import WaitTime from '../WaitTime/WaitTime';
 import Panel from '../Panel/Panel';
 
@@ -10,7 +11,7 @@ import styles from './App.css';
 
 const App = () => (
   <div className={styles.app}>
-    <Header className={styles.header} />
+    <HeaderContainer className={styles.header} clinicName={CLINIC_NAME} />
     <Panel className={styles.waitTime}>
       <Centered horizontally={true} vertically={true}>
         <WaitTime />

@@ -1,13 +1,33 @@
 @value v-colors: "../../colors.css";
-@value c-red, c-magenta from v-colors;
+@value c-red, c-green, c-magenta from v-colors;
 
 .header {
   composes: emphasized-text-bg-colors from v-colors;
   padding: 2rem;
   border-bottom: 3px solid c-magenta;
+  display: flex;
+  align-items: center;
 }
 
-.comicSans {
-  font-family: "Comic Sans MS", cursive;
+.header h1 {
+  margin: 0;
+  flex: 2;
+}
+
+.openIndicator, .closedIndicator {
+  font-size: 1.5em;
+  text-transform: uppercase;
+  padding: 0.5em;
+  border-radius: 2.5em;
+  border: 3px solid;
+}
+
+.openIndicator {
+  color: c-green;
+  border-color: c-green;
+}
+
+.closedIndicator {
   color: c-red;
+  border-color: c-red;
 }
