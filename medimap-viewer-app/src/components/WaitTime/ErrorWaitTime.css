@@ -1,0 +1,17 @@
+@value c-red from "../../colors.css";
+
+.errorWaitTime {
+  color: c-red;
+}
+
+.errorWaitTime p {
+  font-weight: bold;
+  font-size: calc(1.5 * 1.7em);
+  text-align: center;
+}
+
+.errorWaitTime pre {
+  white-space: pre-wrap;
+  overflow: auto;
+  font-family: "Roboto Mono", monospace;
+}

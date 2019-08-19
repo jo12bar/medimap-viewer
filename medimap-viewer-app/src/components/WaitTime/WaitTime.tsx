@@ -2,6 +2,7 @@ import React from 'react';
 import OpenWaitTime from './OpenWaitTime';
 import ClosedWaitTime from './ClosedWaitTime';
 import AtCapacityWaitTime from './AtCapacityWaitTime';
+import ErrorWaitTime from './ErrorWaitTime';
 import { ipcRenderer } from 'electron';
 import {
   MedimapData,
@@ -9,6 +10,7 @@ import {
   isMedimapOpenData,
   isMedimapClosedData,
   isMedimapAtCapacityData,
+  isMedimapErrorData,
 } from '../../medimap-data';
 
 interface WaitTimeState {
@@ -58,9 +60,15 @@ class WaitTime extends React.Component<{}, WaitTimeState> {
       // Clinic is open, but not accepting patients.
       return <AtCapacityWaitTime />;
     }
+    else if (isMedimapErrorData(lastMsg)) {
+      // Some identifiable, main-process side error occurred.
+      return <ErrorWaitTime errorMsg={lastMsg.errorMsg} />;
+    }
     else {
-      // TODO: Replace the below with an error component!
-      return <OpenWaitTime lastUpdated='I dunno. Something weird is going on.' waitTime={-Infinity} />;
+      // Something weird happened. Log the current state and say to check
+      // the logs.
+      console.error('Something weird happened. Current WaitTime component state is:', this.state);
+      return <ErrorWaitTime errorMsg='Something weird happened! Check the logs.' />;
     }
   }
 }
