@@ -3,74 +3,49 @@ import OpenWaitTime from './OpenWaitTime';
 import ClosedWaitTime from './ClosedWaitTime';
 import AtCapacityWaitTime from './AtCapacityWaitTime';
 import ErrorWaitTime from './ErrorWaitTime';
-import { ipcRenderer } from 'electron';
+
 import {
-  MedimapData,
-  isMedimapData,
   isMedimapOpenData,
   isMedimapClosedData,
   isMedimapAtCapacityData,
   isMedimapErrorData,
 } from '../../medimap-data';
 
-interface WaitTimeState {
-  lastMsg: MedimapData | null,
-}
+import withMedimapData, {
+  WithMedimapDataPassedDownProps
+} from '../WithMedimapData/WithMedimapData';
 
 /**
- * Displays the open / closed status and the wait time of a clinic, using data
- * from electron's main process transmitted via ipc.
- */
-class WaitTime extends React.Component<{}, WaitTimeState> {
-  state: Readonly<WaitTimeState> = {
-    lastMsg: null,
-  };
-
-  private onIpcDataRecieved = (_e: any, msg: any) => {
-    console.log('Got msg', msg);
-    if (isMedimapData(msg)) {
-      this.setState({ lastMsg: msg });
-    }
+* Displays the open / closed status and the wait time of a clinic, using data
+* from electron's main process transmitted via ipc.
+*/
+const WaitTime: React.FC<WithMedimapDataPassedDownProps> = ({ msg }) => {
+  if (msg === null) {
+    // We haven't gotten any data yet.
+    return <OpenWaitTime lastUpdated='a while ago' waitTime={0} />;
   }
-
-  componentDidMount() {
-    ipcRenderer.addListener('medimap-new-data', this.onIpcDataRecieved);
+  else if (isMedimapOpenData(msg)) {
+    // Clinic is open and accepting patients.
+    return <OpenWaitTime lastUpdated={msg.lastUpdated} waitTime={msg.waitTime} />;
   }
-
-  componentWillUnmount() {
-    ipcRenderer.removeListener('medimap-new-data', this.onIpcDataRecieved);
+  else if (isMedimapClosedData(msg)) {
+    // Clinic is closed.
+    return <ClosedWaitTime />;
   }
-
-  render() {
-    const { lastMsg } = this.state;
-
-    if (lastMsg === null) {
-      // We haven't gotten any data yet.
-      return <OpenWaitTime lastUpdated='a while ago' waitTime={0} />;
-    }
-    else if (isMedimapOpenData(lastMsg)) {
-      // Clinic is open and accepting patients.
-      return <OpenWaitTime lastUpdated={lastMsg.lastUpdated} waitTime={lastMsg.waitTime} />;
-    }
-    else if (isMedimapClosedData(lastMsg)) {
-      // Clinic is closed.
-      return <ClosedWaitTime />;
-    }
-    else if (isMedimapAtCapacityData(lastMsg)) {
-      // Clinic is open, but not accepting patients.
-      return <AtCapacityWaitTime />;
-    }
-    else if (isMedimapErrorData(lastMsg)) {
-      // Some identifiable, main-process side error occurred.
-      return <ErrorWaitTime errorMsg={lastMsg.errorMsg} />;
-    }
-    else {
-      // Something weird happened. Log the current state and say to check
-      // the logs.
-      console.error('Something weird happened. Current WaitTime component state is:', this.state);
-      return <ErrorWaitTime errorMsg='Something weird happened! Check the logs.' />;
-    }
+  else if (isMedimapAtCapacityData(msg)) {
+    // Clinic is open, but not accepting patients.
+    return <AtCapacityWaitTime />;
   }
-}
+  else if (isMedimapErrorData(msg)) {
+    // Some identifiable, main-process side error occurred.
+    return <ErrorWaitTime errorMsg={msg.errorMsg} />;
+  }
+  else {
+    // Something weird happened. Log the current state and say to check
+    // the logs.
+    console.error('Something weird happened. Current WaitTime msg prop is:', msg);
+    return <ErrorWaitTime errorMsg='Something weird happened! Check the logs.' />;
+  }
+};
 
-export default WaitTime;
+export default withMedimapData(WaitTime);
