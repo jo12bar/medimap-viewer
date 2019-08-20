@@ -42,7 +42,7 @@ interface HeaderProps {
 
 const Header: React.FC<HeaderProps> = ({ className, clinicName }) => (
   <header className={`${className} ${styles.header}`}>
-    <h1>{clinicName}</h1>
+    <span className={styles.mainSegment}><h1>{clinicName}</h1></span>
     <EnhancedHeaderOpenCloseIndicator />
   </header>
 );

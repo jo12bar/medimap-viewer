@@ -1,33 +1,66 @@
 @value v-colors: "../../colors.css";
-@value c-red, c-green, c-magenta from v-colors;
+@value c-red, c-green, c-magenta, c-base03, c-base02 from v-colors;
 
 .header {
+  display: flex;
+  align-items: stretch;
+}
+
+.mainSegment {
   composes: emphasized-text-bg-colors from v-colors;
   padding: 2rem;
+  margin: 0;
   border-bottom: 3px solid c-magenta;
+  flex: 1;
   display: flex;
   align-items: center;
 }
 
-.header h1 {
+.mainSegment h1 {
   margin: 0;
-  flex: 2;
 }
 
 .openIndicator, .closedIndicator {
   font-size: 1.5em;
+  font-weight: 900;
   text-transform: uppercase;
+  color: c-base03;
+
   padding: 0.5em;
-  border-radius: 2.5em;
-  border: 3px solid;
+  border-bottom: 3px solid;
+  border-bottom-left-radius: 1.5rem;
+
+  height: 7.5rem;
+  width: 7.5rem;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  position: relative;
+}
+
+.openIndicator::after, .closedIndicator::after {
+  content: '';
+  box-sizing: border-box;
+
+  background-color: c-base02;
+  border-bottom: 3px solid c-magenta;
+
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  left: 0;
+  height: 7.5rem;
+  width: 7.5rem;
 }
 
 .openIndicator {
-  color: c-green;
+  background-color: c-green;
   border-color: c-green;
 }
 
 .closedIndicator {
-  color: c-red;
+  background-color: c-red;
   border-color: c-red;
 }
