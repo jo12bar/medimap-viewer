@@ -1,4 +1,5 @@
 import React from 'react';
+import PowerButton from '../PowerButton/PowerButton';
 
 import {
   isMedimapOpenData,
@@ -42,7 +43,10 @@ interface HeaderProps {
 
 const Header: React.FC<HeaderProps> = ({ className, clinicName }) => (
   <header className={`${className} ${styles.header}`}>
-    <span className={styles.mainSegment}><h1>{clinicName}</h1></span>
+    <span className={styles.mainSegment}>
+      <h1>{clinicName}</h1>
+      <PowerButton />
+    </span>
     <EnhancedHeaderOpenCloseIndicator />
   </header>
 );

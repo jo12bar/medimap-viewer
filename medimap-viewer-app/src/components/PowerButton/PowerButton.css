@@ -1,0 +1,39 @@
+@value c-magenta, c-base03 from '../../colors.css';
+
+.powerButton {
+  composes: emphasized-text-bg-colors from '../../colors.css';
+  display: inline-block;
+  border: none;
+  padding: 0.5rem;
+  margin: 0;
+  text-decoration: none;
+  font-size: 1em;
+  width: 3em;
+  height: 3em;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 3px solid c-magenta;
+  border-radius: 100%;
+
+  transition: background 250ms ease-in-out,
+              transform 150ms ease;
+}
+
+.powerButton path {
+  fill: c-magenta;
+  transition: fill 250ms ease-in-out;
+}
+
+.powerButton:hover, .powerButton:focus {
+  background: c-magenta;
+}
+
+.powerButton:hover path, .powerButton:focus path {
+  fill: c-base03;
+}
+
+.powerButton:active {
+  transform: scale(0.95);
+}
