@@ -26,6 +26,11 @@
   transition: fill 250ms ease-in-out;
 }
 
+.powerButton svg {
+  height: 100%;
+  width: 100%;
+}
+
 .powerButton:hover, .powerButton:focus {
   background: c-magenta;
 }
