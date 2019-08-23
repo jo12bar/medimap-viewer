@@ -1,0 +1,21 @@
+#########
+# BUILD #
+#########
+
+FROM balenalib/%%BALENA_MACHINE_NAME%%-alpine-golang:latest-build AS build
+
+RUN install_packages alpine-sdk ca-certificates git fuse fuse-dev \
+  && go get -u -v github.com/rclone/rclone
+
+#######
+# RUN #
+#######
+
+FROM balenalib/%%BALENA_MACHINE_NAME%%-alpine:latest
+
+RUN install_packages ca-certificates fuse fuse-dev
+
+COPY --from=build /go/bin/rclone /usr/sbin/rclone
+COPY ./start.bash .
+
+CMD ["bash", "./start.bash"]
