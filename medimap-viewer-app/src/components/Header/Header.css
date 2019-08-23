@@ -31,7 +31,7 @@
   border-bottom: 3px solid;
   border-bottom-left-radius: 1.5rem;
 
-  height: 7.5rem;
+  min-height: 7.5rem;
   width: 7.5rem;
 
   display: flex;
@@ -52,8 +52,8 @@
   z-index: -1;
   top: 0;
   left: 0;
-  height: 7.5rem;
-  width: 7.5rem;
+  height: calc(100% + 3px);
+  width: 100%;
 }
 
 .openIndicator {
