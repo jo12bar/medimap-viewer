@@ -17,5 +17,28 @@ Script | Description
 `make` | Packages the app, and then generates an installer (`.msi`, `.deb`, etc...). Probably unnecessary.
 `publish` | Makes the app, and then publishes it.
 
+## google-drive-rsync
+Uses [rclone](https://rclone.org) to sync slideshow photos from Google Drive.
+
+Unfortunately, Google's OAuth setup means that the config has to be created first on your development machine. The below steps are written for Linux, since they're relatively simple to write. Translate to  other platforms at your own risk (Windows is a fun time). After installing docker:
+
+1) Run `mkdir config && docker run --rm -it -v $(pwd)/config:/config bcardiff/rclone` (on Linux) to generate a config file for Google Drive.
+  - What you name your remote isn't important.
+  - It is *highly* recommended to set up your own `client_id`, as described [here](https://rclone.org/drive/#making-your-own-client-id)
+  - Choose the drive.readonly scope.
+  - Choose the folder where you want to keep your photos on Google Drive as the root_folder_id. This should be the long, random string of characters at the end of the URL when you're viewing the folder on Drive.
+  - You're going to have to go through the Google OAuth confirmation flow. Have a web browser handy.
+
+2) Copy the following config keys into their corresponding environment variables in the balena console:
+
+Config key | Environment variable
+-----------|---------------------
+`client_id` | `RCLONE_CONFIG_REMOTE_CLIENT_ID`
+`client_secret` | `RCLONE_CONFIG_REMOTE_CLIENT_SECRET`
+`root_folder_id` | `RCLONE_CONFIG_REMOTE_ROOT_FOLDER_ID`
+`token` (__COPY THE WHOLE THING - INCLUDING JSON BRACKETS__) | `RCLONE_CONFIG_REMOTE_TOKEN`
+
+3) Repeat once per year (because of the OAuth token's expiry date)
+
 ---
 [LICENSE](./LICENSE)

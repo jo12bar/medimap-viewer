@@ -16,6 +16,7 @@ FROM balenalib/%%BALENA_MACHINE_NAME%%-alpine:latest
 RUN install_packages ca-certificates fuse fuse-dev
 
 COPY --from=build /go/bin/rclone /usr/sbin/rclone
+COPY ./rclone.conf /rclone.conf
 COPY ./start.bash .
 
 CMD ["bash", "./start.bash"]
