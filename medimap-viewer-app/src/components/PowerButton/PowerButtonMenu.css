@@ -1,0 +1,50 @@
+@value c-base3, c-base2, c-base00, c-base01, c-violet from '../../colors.css';
+
+.dropdown {
+  background: c-base2;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  position: relative;
+  border-radius: 0.5rem;
+}
+
+.dropdown::before {
+  content: '';
+
+  /* CSS triangle. See https://css-tricks.com/snippets/css/css-triangle/ */
+  width: 0;
+  height: 0;
+
+  position: absolute;
+  top: -8px;
+  left: calc(50% - 8px);
+
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+  border-bottom: 8px solid c-base3;
+}
+
+.menuItem {
+  color: c-base01;
+  padding: 0.5em;
+  cursor: pointer;
+}
+
+.menuItem:first-child {
+  border-top-left-radius: 0.5rem;
+  border-top-right-radius: 0.5rem;
+}
+
+.menuItem:last-child {
+  border-bottom-left-radius: 0.5rem;
+  border-bottom-right-radius: 0.5rem;
+}
+
+.menuItem:not(:last-child) {
+  border-bottom: 1px solid c-base01;
+}
+
+.menuItemHighlighted {
+  background: c-violet;
+  color: c-base3;
+  text-decoration: underline;
+}
