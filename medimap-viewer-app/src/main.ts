@@ -1,4 +1,5 @@
-import electron, { app, BrowserWindow } from 'electron';
+import electron, { app, BrowserWindow, ipcMain } from 'electron';
+import fetch from 'node-fetch';
 import { updateMedimapData } from './medimap-data';
 
 declare const MAIN_WINDOW_WEBPACK_ENTRY: string;
@@ -56,6 +57,46 @@ const createWindow = () => {
 
   setInterval(() => mainWindow && updateMedimapData(mainWindow), DATA_FETCH_DELAY);
   updateMedimapData(mainWindow);
+
+  // Shutdowns in balena are weird - they use an http-based api. But we don't
+  // want to shut down the computer when developing! So, when not on balena,
+  // we'll just log out the command that would've otherwise been run.
+  const balenaSuperviserAddress = IS_BALENA
+    ? process.env.BALENA_SUPERVISER_ADDRESS
+    : 'http://127.0.0.1:48484';
+  const balenaSuperviserApiKey = IS_BALENA
+    ? process.env.BALENA_SUPERVISER_API_KEY
+    : 'SOME_API_KEY';
+  const balenaRestartEndpoint = `${balenaSuperviserAddress}/v1/reboot?apikey=${balenaSuperviserApiKey}`;
+  const balenaShutdownEndpoint = `${balenaSuperviserAddress}/v1/shutdown?apikey=${balenaSuperviserApiKey}`;
+
+  ipcMain.on('restart-device', async () => {
+    if (IS_BALENA) {
+      console.log('Restarting device...');
+      fetch(balenaRestartEndpoint, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+      });
+    }
+    else {
+      console.log('User tried to restart on a non-balena device. Would\'ve posted to:');
+      console.log(balenaRestartEndpoint);
+    }
+  });
+
+  ipcMain.on('shutdown-device', async () => {
+    if (IS_BALENA) {
+      console.log('Shutting down...');
+      fetch(balenaShutdownEndpoint, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+      });
+    }
+    else {
+      console.log('User tried to shutdown on a non-balena device. Would\'ve posted to:');
+      console.log(balenaShutdownEndpoint);
+    }
+  });
 };
 
 // This method will be called when Electron has finished

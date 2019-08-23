@@ -1,5 +1,6 @@
 import React from 'react';
 import { MenuList, MenuItem, ChosenEvent } from 'react-menu-list';
+import { ipcRenderer } from 'electron';
 
 import styles from './PowerButtonMenu.css';
 
@@ -17,11 +18,14 @@ const PowerButtonMenuItem: React.FC<PowerButtonMenuItemProps> = ({ children, onI
   </MenuItem>
 );
 
+const onRestartChosen = () => ipcRenderer.send('restart-device');
+const onShutdownChosen = () => ipcRenderer.send('shutdown-device');
+
 const PowerButtonMenu = () => (
   <div className={styles.dropdown}>
     <MenuList>
-      <PowerButtonMenuItem>Restart</PowerButtonMenuItem>
-      <PowerButtonMenuItem>Shutdown</PowerButtonMenuItem>
+      <PowerButtonMenuItem onItemChosen={onRestartChosen}>Restart</PowerButtonMenuItem>
+      <PowerButtonMenuItem onItemChosen={onShutdownChosen}>Shutdown</PowerButtonMenuItem>
     </MenuList>
   </div>
 );
