@@ -61,6 +61,7 @@ trap cache_handler SIGHUP
 # on SIGTERM) and just straight-up append the OAuth token to it.
 cp "$CONFIG_FILE" "${CONFIG_FILE}.oauth.conf"
 echo "token = $RCLONE_CONFIG_REMOTE_TOKEN"
+cat "${CONFIG_FILE}.oauth.conf"
 
 # Mount rclone remote, and wait
 /usr/sbin/rclone --config "${CONFIG_FILE}.oauth.conf" mount $REMOTE_PATH $MOUNT_POINT $MOUNT_FLAGS &
