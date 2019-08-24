@@ -35,6 +35,7 @@ function term_handler() {
   kill -SIGTERM "${!}"
 
   fuse_unmount
+  rm -f "${CONFIG_FILE}.oauth.conf"
   echo 'Exiting container now'
   exit $?
 }
@@ -55,8 +56,14 @@ function fuse_unmount() {
 trap term_handler SIGINT SIGTERM
 trap cache_handler SIGHUP
 
+# rclone has no way to pass in OAuth tokens to Google Drive remotes via env vars
+# or commandline flags. So, we create a copy of the $CONFIG_FILE (to be removed
+# on SIGTERM) and just straight-up append the OAuth token to it.
+cp "$CONFIG_FILE" "${CONFIG_FILE}.oauth.conf"
+echo "token = $RCLONE_CONFIG_REMOTE_TOKEN"
+
 # Mount rclone remote, and wait
-/usr/sbin/rclone --config $CONFIG_FILE mount $REMOTE_PATH $MOUNT_POINT $MOUNT_FLAGS &
+/usr/sbin/rclone --config "${CONFIG_FILE}.oauth.conf" mount $REMOTE_PATH $MOUNT_POINT $MOUNT_FLAGS &
 wait "${!}"
 
 # Will only reach the below if rclone crashes.
