@@ -60,7 +60,7 @@ trap cache_handler SIGHUP
 # or commandline flags. So, we create a copy of the $CONFIG_FILE (to be removed
 # on SIGTERM) and just straight-up append the OAuth token to it.
 cp "$CONFIG_FILE" "${CONFIG_FILE}.oauth.conf"
-echo "token = $RCLONE_CONFIG_REMOTE_TOKEN"
+echo "token = $RCLONE_CONFIG_REMOTE_TOKEN" >> "${CONFIG_FILE}.oauth.conf"
 cat "${CONFIG_FILE}.oauth.conf"
 
 # Mount rclone remote, and wait
