@@ -21,4 +21,11 @@ services:
       - "UDEV=1"
   rclone:
     build: ./google-drive-rsync
+    restart: always
     network_mode: host
+    cap_add:
+      - SYS_ADMIN
+    devices:
+      - "/dev/fuse"
+    security_opt:
+      - "apparmor:unconfined"
