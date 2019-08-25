@@ -1,15 +1,14 @@
 version: "2.1"
 networks: {}
 volumes:
-  resin-data: {}
+  medimap-photos:
 services:
   app:
     build: ./medimap-viewer-app
     privileged: true
     restart: always
-    network_mode: host
     volumes:
-      - "resin-data:/data"
+      - "medimap-photos:/mnt/medimap-photos"
     labels:
       io.balena.features.kernel-modules: true
       io.balena.features.firmware: true
@@ -22,10 +21,11 @@ services:
   rclone:
     build: ./google-drive-rsync
     restart: always
-    network_mode: host
     cap_add:
       - SYS_ADMIN
     devices:
       - "/dev/fuse"
     security_opt:
       - "apparmor:unconfined"
+    volumes:
+      - "medimap-photos:/mnt/remote"
