@@ -8,7 +8,7 @@ services:
     privileged: true
     restart: always
     volumes:
-      - "medimap-photos:/mnt/medimap-photos"
+      - "medimap-photos:/mnt/medimap-photos:shared"
     labels:
       io.balena.features.kernel-modules: true
       io.balena.features.firmware: true
@@ -28,4 +28,4 @@ services:
     security_opt:
       - "apparmor:unconfined"
     volumes:
-      - "medimap-photos:/mnt/remote"
+      - "medimap-photos:/mnt/remote:shared"
