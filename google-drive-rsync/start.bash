@@ -15,8 +15,8 @@ REMOTE_PATH='remote:'
 # Location of the config file.
 CONFIG_FILE='/rclone.conf'
 
-# Flags for mounting the remote.
-MOUNT_FLAGS=''
+# Flags for syncing the remote.
+SYNC_FLAGS='--size-only'
 
 # Flags for unmounting the remote.
 UNMOUNT_FLAGS='-u -z'
@@ -34,7 +34,6 @@ function term_handler() {
   # Kill last-spawned background process $(pidof rclone)
   kill -SIGTERM "${!}"
 
-  fuse_unmount
   rm -f "${CONFIG_FILE}.oauth.conf"
   echo 'Exiting container now'
   exit $?
@@ -45,11 +44,6 @@ function cache_handler() {
   echo 'Sending SIGHUP to child pid'
   kill -SIGHUP "${!}"
   wait "${!}"
-}
-
-function fuse_unmount() {
-  echo "Unmounting: fusermount $UNMOUNT_FLAGS $MOUNT_POINT at: $(date +%Y.%m.%d-%T)"
-  fusermount $UNMOUNT_FLAGS "$MOUNT_POINT"
 }
 
 # Setup signal traps
@@ -63,11 +57,13 @@ cp "$CONFIG_FILE" "${CONFIG_FILE}.oauth.conf"
 echo "token = $RCLONE_CONFIG_REMOTE_TOKEN" >> "${CONFIG_FILE}.oauth.conf"
 cat "${CONFIG_FILE}.oauth.conf"
 
-# Mount rclone remote, and wait
-/usr/sbin/rclone --config "${CONFIG_FILE}.oauth.conf" mount $REMOTE_PATH $MOUNT_POINT $MOUNT_FLAGS &
-wait "${!}"
+while true; do
+  # Sync rclone remote, and wait
+  /usr/sbin/rclone --config "${CONFIG_FILE}.oauth.conf" sync $REMOTE_PATH $MOUNT_POINT $SYNC_FLAGS &
+  wait "${!}"
+  sleep 30
+done
 
 # Will only reach the below if rclone crashes.
 echo "rclone crashed at $(date +%Y.%m.%d-%T)"
-fuse_unmount
 exit $?
