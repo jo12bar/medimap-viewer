@@ -1,6 +1,7 @@
 import electron, { app, BrowserWindow, ipcMain } from 'electron';
 import fetch from 'node-fetch';
 import { updateMedimapData } from './medimap-data';
+import watchForImages from './images-watcher';
 
 declare const MAIN_WINDOW_WEBPACK_ENTRY: string;
 
@@ -97,6 +98,8 @@ const createWindow = () => {
       console.log(balenaShutdownEndpoint);
     }
   });
+
+  watchForImages(mainWindow);
 };
 
 // This method will be called when Electron has finished
