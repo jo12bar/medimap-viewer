@@ -7,7 +7,7 @@ import { fileWalk } from './util/fs-util';
 const IS_BALENA = process.env.BALENA ? !!(parseInt(process.env.BALENA)) : false;
 
 const DIR_TO_WATCH = IS_BALENA
-  ? '/mnt/medimap-images'
+  ? '/mnt/medimap-photos'
   : path.resolve(process.cwd(), 'images-for-local-development/');
 
 const IMAGES_REGEX = /\.(jpg|jpeg|png|webp|svg|gif)/i;
