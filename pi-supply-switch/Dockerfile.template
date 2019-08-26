@@ -1,0 +1,16 @@
+FROM balenalib/%%BALENA_MACHINE_NAME%%-python:3-run
+
+WORKDIR /usr/src/app
+
+RUN install_packages curl
+
+COPY requirements.txt ./
+RUN pip install -r requirements.txt
+
+COPY . ./
+
+# Enable udevd so that plugged dynamic hardware devices show up in our
+# container.
+ENV UDEV=1
+
+CMD ["python", "main.py"]

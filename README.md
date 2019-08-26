@@ -40,5 +40,8 @@ Config key | Environment variable
 
 3) Repeat once per year (because of the OAuth token's expiry date)
 
+## pi-supply-switch
+This service handles safe shutdowns and restarts by use of a [Pi Supply Switch](https://uk.pi-supply.com/products/pi-supply-raspberry-pi-power-switch). The code is based off of [their official repo](https://github.com/PiSupply/Pi-Supply-Switch), with some minor modifications for compatibility with balena's http API-based power management system.
+
 ---
 [LICENSE](./LICENSE)
