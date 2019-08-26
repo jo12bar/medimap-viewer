@@ -21,3 +21,12 @@ export const hideCursor = (el: HTMLElement) => el.classList.add('hide-cursor');
 
 /** Hide the cursor from the <html> element */
 export const hideCursorFromDocument = () => hideCursor(document.documentElement);
+
+export const isStringArray = (xs: any): xs is string[] => {
+  if (Array.isArray(xs)) {
+    return xs.reduce((acc, x) => acc && (typeof x === 'string'), true);
+  }
+  else {
+    return false;
+  }
+};

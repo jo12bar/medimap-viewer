@@ -5,6 +5,7 @@ import { CLINIC_NAME } from '../../config';
 import Centered from '../Centered/Centered';
 import Header from '../Header/Header';
 import WaitTime from '../WaitTime/WaitTime';
+import ImageSlideshow from '../ImageSlideshow/ImageSlideshow';
 import Panel from '../Panel/Panel';
 
 import styles from './App.css';
@@ -17,7 +18,9 @@ const App = () => (
         <WaitTime />
       </Centered>
     </Panel>
-    <Panel className={styles.slideshow}><p><sub>geez, this is getting bloated...</sub></p></Panel>
+    <Panel className={styles.slideshow}>
+      <ImageSlideshow />
+    </Panel>
   </div>
 );
 
