@@ -100,7 +100,7 @@ function withIpcImages<T extends WithIpcImagesPassedDownProps>(
       return <Component
         {...this.props as T}
         imageUrls={imageUrls.map((f) => url.format({
-          pathname: f,
+          pathname: encodeURI(f),
           protocol: 'medimap-image:',
           slashes: true,
         }))}

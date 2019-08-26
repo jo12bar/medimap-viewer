@@ -106,7 +106,7 @@ const createWindow = () => {
   // renderer can actually get to slideshow images (mostly for development).
   protocol.registerFileProtocol('medimap-image', (req, cb) => {
     const url = new URL(req.url);
-    let filePath = url.pathname;
+    let filePath = decodeURI(url.pathname);
     // Need to remove extraneous slash at beginning of path on Windows:
     if (process.platform === 'win32') {
       filePath = filePath.substr(1);
