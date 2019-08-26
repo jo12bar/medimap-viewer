@@ -15,29 +15,50 @@ module.exports = {
 
       // Lets CSS files get added to the bundle
       {
-        test: /\.css$/,
-        use: [
+        oneOf: [
           {
-            loader: MiniCssExtractPlugin.loader,
-            options: {
-              hmr: process.env.NODE_ENV === 'development',
-              reloadAll: true, // Backup for if HMR doesn't work
-            },
+            test: /\.css$/,
+            include: /node_modules/,
+            use: [
+              {
+                loader: MiniCssExtractPlugin.loader,
+                options: {
+                  hmr: process.env.NODE_ENV === 'development',
+                  reloadAll: true,
+                },
+              },
+              {
+                loader: 'css-loader',
+                options: { modules: false },
+              }
+            ]
           },
           {
-            loader: 'css-loader',
-            options: {
-              modules: true,
-              importLoaders: 1,
-            },
-          },
-          {
-            loader: 'postcss-loader',
-            options: {
-              sourceMap: true,
-            },
-          },
-        ],
+            test: /\.css$/,
+            use: [
+              {
+                loader: MiniCssExtractPlugin.loader,
+                options: {
+                  hmr: process.env.NODE_ENV === 'development',
+                  reloadAll: true, // Backup for if HMR doesn't work
+                },
+              },
+              {
+                loader: 'css-loader',
+                options: {
+                  modules: true,
+                  importLoaders: 1,
+                },
+              },
+              {
+                loader: 'postcss-loader',
+                options: {
+                  sourceMap: true,
+                },
+              },
+            ],
+          }
+        ]
       },
     ],
   },

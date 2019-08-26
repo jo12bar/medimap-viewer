@@ -1,5 +1,5 @@
 .app {
-  min-height: 100%;
+  height: 100vh;
   width: 100%;
   display: grid;
   grid-template-columns: minmax(20rem, 1fr) 3fr;
@@ -23,6 +23,8 @@
 .slideshow {
   grid-area: slideshow;
   margin-right: 2rem;
+  overflow: hidden;
+  position: relative;
 }
 
 .waitTime, .slideshow {

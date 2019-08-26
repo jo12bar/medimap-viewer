@@ -29,7 +29,7 @@ interface WithIpcImagesState {
  * Connects a component to updated image file lists recieved via ipc. Will also
  * walk DIR_TO_WALK after first being mounted. The prop `imageUrls` on the
  * passed-in component will be the most recently recieved list of image urls,
- * pre-formatted as "file://" uris.
+ * pre-formatted as "medimap-image://" uris.
  *
  * If DIR_TO_WALK is still being walked on first render, a <p> tag explaining
  * that the images are still being looked for will be displayed instead of the
@@ -101,7 +101,7 @@ function withIpcImages<T extends WithIpcImagesPassedDownProps>(
         {...this.props as T}
         imageUrls={imageUrls.map((f) => url.format({
           pathname: f,
-          protocol: 'file:',
+          protocol: 'medimap-image:',
           slashes: true,
         }))}
       />;

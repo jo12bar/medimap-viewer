@@ -1,0 +1,37 @@
+.slideshow {
+  /* Make slideshow fill whole container */
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  /* Remove margins, paddings, bullets */
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+
+.slide {
+  /* Layer each slide on top of one another */
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  opacity: 0;
+  transition: opacity 0.5s linear;
+}
+
+.slide.shown {
+  opacity: 1;
+  transition: opacity 0.5s linear;
+}
+
+.slide img {
+  /* Fit images to their slides */
+  height: 100%;
+  width: 100%;
+  object-fit: scale-down;
+  object-position: center center;
+}

@@ -1,5 +1,6 @@
-import electron, { app, BrowserWindow, ipcMain } from 'electron';
+import electron, { app, BrowserWindow, ipcMain, protocol } from 'electron';
 import fetch from 'node-fetch';
+import path from 'path';
 import { updateMedimapData } from './medimap-data';
 import watchForImages from './images-watcher';
 
@@ -100,6 +101,23 @@ const createWindow = () => {
   });
 
   watchForImages(mainWindow);
+
+  // We have to create a custom file:// protocol interceptor so that the
+  // renderer can actually get to slideshow images (mostly for development).
+  protocol.registerFileProtocol('medimap-image', (req, cb) => {
+    const url = new URL(req.url);
+    let filePath = url.pathname;
+    // Need to remove extraneous slash at beginning of path on Windows:
+    if (process.platform === 'win32') {
+      filePath = filePath.substr(1);
+    }
+    cb(path.normalize(filePath));
+  }, (err) => {
+    if (err) {
+      console.error('Failed to register file protocol interceptor');
+      console.error(err);
+    }
+  })
 };
 
 // This method will be called when Electron has finished
