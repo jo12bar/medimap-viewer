@@ -31,6 +31,7 @@ services:
       - "medimap-photos:/mnt/remote"
   power_switch:
     build: ./pi-supply-switch
+    restart: always
     devices:
       - "/dev/i2c-1:/dev/i2c-1"
       - "/dev/mem:/dev/mem"
