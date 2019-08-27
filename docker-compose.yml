@@ -31,6 +31,7 @@ services:
       - "medimap-photos:/mnt/remote"
   power_switch:
     build: ./pi-supply-switch
+    privileged: true
     restart: always
     devices:
       - "/dev/i2c-1:/dev/i2c-1"
@@ -39,4 +40,8 @@ services:
     cap_add:
       - SYS_RAWIO
     labels:
+      io.balena.features.kernel-modules: true
+      io.balena.features.firmware: true
+      io.balena.features.dbus: true
       io.balena.features.supervisor-api: true
+      io.balena.features.balena-api: true

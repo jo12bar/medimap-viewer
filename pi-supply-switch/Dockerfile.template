@@ -13,4 +13,4 @@ COPY . ./
 # container.
 ENV UDEV=1
 
-CMD ["python", "main.py"]
+CMD ["python", "-u", "main.py"]
