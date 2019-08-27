@@ -41,6 +41,6 @@ if GPIO.input(pinSeven) == False:
     # Bring down pinEight so that the capacitor can discharge and eventually cut
     # power to the Pi
     GPIO.output(pinEight, 0)
-    call(POWEROFF_COMMAND, shell=False)
+    call(SHUTDOWN_COMMAND, shell=False)
 else:
     call(REBOOT_COMMAND, shell=False)
