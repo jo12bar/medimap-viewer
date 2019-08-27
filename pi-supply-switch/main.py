@@ -13,8 +13,8 @@ from subprocess import call
 import RPi.GPIO as GPIO
 from time import sleep
 
-SHUTDOWN_COMMAND = 'curl -X POST --header "Content-Type:application/json" "{}/v1/shutdown?apikey={}"'.format(environ['BALENA_SUPERVISOR_ADDRESS'], environ['BALENA_SUPERVISOR_API_KEY'])
-REBOOT_COMMAND = 'curl -X POST --header "Content-Type:application/json" "{}/v1/reboot?apikey={}"'.format(environ['BALENA_SUPERVISOR_ADDRESS'], environ['BALENA_SUPERVISOR_API_KEY'])
+SHUTDOWN_COMMAND = ['curl', '-X', 'POST', '--header', 'Content-Type:application/json', '{}/v1/shutdown?apikey={}'.format(environ['BALENA_SUPERVISOR_ADDRESS'], environ['BALENA_SUPERVISOR_API_KEY'])];
+REBOOT_COMMAND = ['curl', '-X', 'POST', '--header', 'Content-Type:application/json', '{}/v1/reboot?apikey={}'.format(environ['BALENA_SUPERVISOR_ADDRESS'], environ['BALENA_SUPERVISOR_API_KEY'])];
 
 # Map pin seven and eight on the Pi Switch PCB to chosen pins on the Pi's header
 # The PCB numbering is refers to a legacy design of the board.
