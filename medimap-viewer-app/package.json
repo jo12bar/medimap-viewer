@@ -79,7 +79,7 @@
     "chokidar": "^3.0.2",
     "dotenv": "^8.0.0",
     "electron-squirrel-startup": "^1.0.0",
-    "node-fetch": "^2.6.1",
+    "node-fetch": "^2.6.7",
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
     "react-hot-loader": "^4.12.10",
